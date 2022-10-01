@@ -1,0 +1,24 @@
+@import "styles/variables";
+
+.description {
+  background: rgba(217, 217, 217, 0.1);
+  padding: 13px 11px;
+  text-align: center;
+  width: auto;
+  margin: 30px 10% 0;
+
+  @media (min-width: $media-min-screen) {
+    width: 520px;
+    height: 95px;
+    margin: 30px auto 0;
+  }
+}
+
+.title {
+  font-size: 28px;
+  text-decoration: underline;
+}
+
+.text {
+  font-size: 19px;
+}

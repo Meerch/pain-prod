@@ -1,0 +1,56 @@
+@import "styles/variables";
+
+.gallery {
+  margin-top: 82px;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  height: auto;
+  overflow: hidden;
+
+  @media (min-width: $media-min-screen) {
+    margin-top: 55px;
+  }
+}
+
+.photosBar {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 150px;
+    width: 100%;
+    background: rgba(217, 217, 217, 0.3);
+  }
+}
+
+.photoBar {
+  width: 243px;
+  height: 243px;
+  margin-right: 64px;
+
+  &:first-child {
+    margin-left: 64px;
+  }
+
+  &.mobile {
+    &:first-child {
+      margin-left: -64px;
+    }
+  }
+}
+
+
+.mobilePhotoBar {
+  margin-top: 40px;
+
+  &:first-child {
+    margin-left: -128px;
+  }
+}

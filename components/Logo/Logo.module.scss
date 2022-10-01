@@ -1,0 +1,40 @@
+@import "styles/variables";
+
+.logo {
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  align-items: center;
+  width: 223px;
+  margin: 0 auto;
+}
+
+.logoImage {
+  width: 223px;
+  height: 223px;
+  margin-top: 17px;
+}
+
+.ethereum {
+  margin-top: 10px;
+}
+
+.nftMinted {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 20px;
+
+  @media (min-width: $media-min-screen) {
+    position: absolute;
+    top: 50%;
+    right: -65%;
+    transform: translateY(-50%);
+    flex-flow: column nowrap;
+  }
+
+  .amount {
+    font-size: 22px;
+    margin-left: 10px;
+  }
+}

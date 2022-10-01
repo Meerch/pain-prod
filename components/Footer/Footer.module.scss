@@ -1,0 +1,45 @@
+@import "styles/variables";
+
+.footer {
+  margin-top: 145px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  padding-bottom: 70px;
+
+  @media (min-width: $media-min-screen) {
+    margin-top: 100px;
+    padding-bottom: 30px;
+  }
+}
+
+.marketplaces {
+  display: flex;
+  align-items: center;
+  width: 235px;
+  justify-content: space-between;
+
+  @media (min-width: $media-min-screen) {
+    display: none;
+  }
+}
+
+.socialLinks {
+  display: flex;
+  margin-top: 40px;
+  align-items: center;
+  width: 180px;
+  justify-content: space-between;
+}
+
+.createBy {
+  font-size: 28px;
+  text-align: center;
+  display: none;
+  margin-top: 20px;
+
+  @media (min-width: $media-min-screen) {
+    display: inline;
+  }
+}

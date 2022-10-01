@@ -1,0 +1,17 @@
+@import "styles/variables";
+
+.marketplaces {
+  display: none;
+
+  @media (min-width: $media-min-screen) {
+    display: flex;
+    width: 220px;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+  }
+}
+
+.marketplace {
+  cursor: pointer;
+}
