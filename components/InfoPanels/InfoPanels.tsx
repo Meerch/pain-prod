@@ -34,7 +34,7 @@ export const InfoPanels = () => {
         <div className={styles.infoPanels}>
             {
                 panels && panels.map(({title, change, supply, progress}) => (
-                    <div className={classNames(styles.infoPanel, {
+                    <div key={title} className={classNames(styles.infoPanel, {
                         [styles.full]: progress === 100
                     })}>
                         <span className={styles.title}>{title}</span>

@@ -33,7 +33,7 @@ export const Gallery = () => {
             <div className={styles.photosBar}>
                 {
                     (isDesktop ? photos : splitHalfPhotos(1)).map((photoUrl) => (
-                        <div className={classNames(styles.photoBar, {
+                        <div key={photoUrl} className={classNames(styles.photoBar, {
                             [styles.mobile]: !isDesktop
                         })}>
                             <img className={styles.image} src={photoUrl} alt="photo nft"/>
@@ -45,7 +45,7 @@ export const Gallery = () => {
             <div className={styles.photosBar}>
                 {
                     !isDesktop && splitHalfPhotos(2).map((photoUrl) => (
-                        <div className={classNames(styles.photoBar, styles.mobilePhotoBar)}>
+                        <div key={photoUrl} className={classNames(styles.photoBar, styles.mobilePhotoBar)}>
                             <img className={styles.image} src={photoUrl} alt="photo nft"/>
                         </div>
                     ))

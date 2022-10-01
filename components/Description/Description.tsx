@@ -9,7 +9,7 @@ export const Description = () => {
             </span>
             <br/>
             <span className={styles.text}>
-                The ETH price and % of its 24h fall is recorded in your pAIn NFT's metadata.
+                The ETH price and % of its 24h fall is recorded in your pAIn NFT&apos;s metadata.
             </span>
         </div>
     );
