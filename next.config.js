@@ -4,10 +4,10 @@ const nextConfig = {
   swcMinify: true,
   images: {
     loader: "akamai",
-    path: '/pain'
+    path: ''
   },
-  basePath: '/pain',
-  assetPrefix: '/pain'
+  basePath: '',
+  assetPrefix: ''
 }
 
 module.exports = nextConfig
