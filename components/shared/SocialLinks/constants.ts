@@ -2,16 +2,16 @@ export const links = [
     {
         icon: '/images/social-links/twitter.png',
         name: 'twitter',
-        href: '#',
+        href: 'https://twitter.com',
     },
     {
         icon: '/images/social-links/discord.png',
         name: 'discord',
-        href: '#',
+        href: 'https://discord.com',
     },
     {
         icon: '/images/social-links/telegram.png',
         name: 'telegram',
-        href: '#',
+        href: 'https://t.me',
     },
 ]

@@ -18,7 +18,7 @@ export const SocialLinks: FC<SocialLinksProps> = ({className}) => {
                         href={href}
                         className={styles.socialLink}
                         target='_blank'
-                        rel='noopener'
+                        rel='noreferrer'
                     >
                         <img src={icon} alt={name}/>
                     </a>

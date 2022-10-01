@@ -18,7 +18,7 @@ export const Marketplaces: FC<MarketplacesProps> = ({className}) => {
                         href={href}
                         className={styles.marketplace}
                         target='_blank'
-                        rel='noopener'
+                        rel='noreferrer'
                     >
                         <img src={icon} alt={name}/>
                     </a>
