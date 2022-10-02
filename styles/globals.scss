@@ -61,6 +61,31 @@ body {
     z-index: 0;
   }
 
+  &-status {
+    display: none;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media (min-width: $media-min-screen) {
+      display: inline-block;
+    }
+  }
+
+  &-dancer {
+    display: none;
+    opacity: .2;
+    border-radius: 92px;
+    width: 197px;
+    height: 219px;
+    top: 720px;
+    left: -40px;
+
+    @media (min-width: $media-min-screen) {
+      display: inline-block;
+    }
+  }
+
   &-statistic {
     opacity: .30;
 

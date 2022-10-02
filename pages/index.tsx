@@ -29,6 +29,8 @@ export default function Home() {
             <Gallery />
             <Footer />
             <img className='background-element background-statistic' src="/images/background-statistic-btc.png" alt=""/>
+            <img className='background-element background-dancer' src="/images/background-element-2.gif" alt=""/>
+            <img className='background-element background-status' src="/images/mint-status.png" alt="mint status"/>
         </div>
     )
 }

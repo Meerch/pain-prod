@@ -67,7 +67,7 @@ const gapsRotates: { [key: string]: [number, number] } = {
 
 
 export const Speedometer = () => {
-    const [progress, setProgress] = useState(1)
+    const [progress, setProgress] = useState(0.5)
 
     // const isActivePart = useMemo((percent: number) => {
     //     return
@@ -116,10 +116,8 @@ export const Speedometer = () => {
                                 {
                                     percent < progress
                                         ? <img className={styles.imageBackgroundActive} src={backgroundActive} alt=""/>
-                                        : <img className={styles.imageBackgroundInactive} src={backgroundInactive}
-                                               alt=""/>
+                                        : <img className={styles.imageBackgroundInactive} src={backgroundInactive} alt=""/>
                                 }
-
                             </div>
                         </div>
                     ))
