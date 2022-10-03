@@ -1,7 +1,6 @@
 import styles from './Speedometer.module.scss'
 import classNames from "classnames";
-import {useCallback, useMemo, useState} from "react";
-import {getRandomInt} from "../../../../helpers/utils";
+import {useEffect, useState} from "react"
 
 const parts = [
     {
@@ -12,7 +11,7 @@ const parts = [
     },
     {
         id: 1,
-        percent: 0.2,
+        percent: 0.15,
         borderActive: '/images/speedometer/part-1/border-active.svg',
         borderInactive: '/images/speedometer/part-1/border-inactive.svg',
         backgroundActive: '/images/speedometer/part-1/background-active.svg',
@@ -20,7 +19,7 @@ const parts = [
     },
     {
         id: 2,
-        percent: 0.4,
+        percent: 0.32,
         borderActive: '/images/speedometer/part-2/border-active.svg',
         borderInactive: '/images/speedometer/part-2/border-inactive.svg',
         backgroundActive: '/images/speedometer/part-2/background-active.svg',
@@ -28,7 +27,7 @@ const parts = [
     },
     {
         id: 3,
-        percent: 0.6,
+        percent: 0.50,
         borderActive: '/images/speedometer/part-3/border-active.svg',
         borderInactive: '/images/speedometer/part-3/border-inactive.svg',
         backgroundActive: '/images/speedometer/part-3/background-active.svg',
@@ -36,7 +35,7 @@ const parts = [
     },
     {
         id: 4,
-        percent: 0.8,
+        percent: 0.68,
         borderActive: '/images/speedometer/part-4/border-active.svg',
         borderActiveHalf: '/images/speedometer/part-4/border-active-half.svg',
         borderInactive: '/images/speedometer/part-4/border-inactive.svg',
@@ -46,53 +45,67 @@ const parts = [
 ]
 const initialRotateArrow = -130
 
-const gapsRotates: { [key: string]: [number, number] } = {
-    0: [0, 30],
-    0.2: [45, 75],
-    0.4: [90, 122],
-    0.6: [135, 170],
-    0.8: [182, 215],
-    // 1: [0, 0]
-}
-
-//
-// const fields = {
-//     0.2: [0, 30],
-//     0.4: [45, 75],
-//     0.6: [90, 122],
-//     0.8: [135, 170],
-//     1: [182, 215],
+// const gapsRotates: { [key: string]: [number, number] } = {
+//     0: [0, 30],
+//     0.2: [45, 75],
+//     0.4: [90, 122],
+//     0.6: [135, 170],
+//     0.8: [182, 215],
 //     // 1: [0, 0]
 // }
 
-
 export const Speedometer = () => {
-    const [progress, setProgress] = useState(0.5)
+    const [progress, setProgress] = useState(0)
 
-    // const isActivePart = useMemo((percent: number) => {
-    //     return
-    // }, [progress])
+    const mainProgress = 1
 
     const calculateRotateArrow = () => {
-        let initialGap: [number, number] = [0, 0]
-        Object.entries(gapsRotates).forEach(([key, value]) => {
-            if (+key < progress) {
-                initialGap = value
-            }
-        })
-        const randomValue = getRandomInt(...initialGap)
-        return initialRotateArrow + (randomValue)
+        return initialRotateArrow + (260 * progress)
     }
+
+    const handlerChangeProgress = (value: number) => {
+        setProgress(prev => +(prev + value).toFixed(2))
+    }
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+
+            setProgress(prev => {
+                if (prev >= mainProgress) {
+                    clearInterval(timer)
+                    return prev
+                }
+                return +(prev + 0.01).toFixed(2)
+            })
+        }, 100)
+
+        return () => {
+            clearInterval(timer)
+        }
+        // const timer= setTimeout(() => {
+        //     setProgress(0.6)
+        // }, 3000)
+        // return () => {
+        //     clearInterval(timer)
+        // }
+    }, [])
 
     return (
         <div className={styles.speedometer}>
+            {/*<button onClick={() => handlerChangeProgress(-0.20)}*/}
+            {/*        style={{width: '100px', height: '50px', zIndex: 3000, position: 'relative'}}>-*/}
+            {/*</button>*/}
+            {/*<button onClick={() => handlerChangeProgress(0.20)}*/}
+            {/*        style={{width: '100px', height: '50px', zIndex: 3000, position: 'relative'}}>+*/}
+            {/*</button>*/}
+            {/*<span style={{width: '100px', height: '50px', zIndex: 3000, position: 'relative'}}>Progress: {progress}</span>*/}
             <div className={styles.parts}>
                 {
                     parts.map(({
                                    id,
                                    borderInactive,
                                    borderActive,
-                                   // borderActiveHalf,
+                                   borderActiveHalf,
                                    percent,
                                    backgroundActive,
                                    backgroundInactive
@@ -104,20 +117,54 @@ export const Speedometer = () => {
                             {/*{backgroundActive && <img className={styles.backgroundActive} src={backgroundActive} alt=""/>}*/}
                             {/*{backgroundInactive &&*/}
                             {/*    <img className={styles.backgroundInactive} src={backgroundInactive} alt=""/>}*/}
-                            <div className={classNames(styles.partBorder, styles.elementPart)}>
-                                {
-                                    percent < progress
-                                        ? <img className={styles.imageBorderActive} src={borderActive} alt=""/>
-                                        : <img className={styles.imageBorderInactive} src={borderInactive} alt=""/>
-                                }
+                            <div  className={classNames(styles.partBorder, styles.elementPart)}>
+                                {/*onClick={() => setProgress(percent + 0.1)}*/}
+                                {/*{*/}
+                                {/*    percent < progress*/}
+                                {/*        ? id === 4*/}
+                                {/*            ? progress < 0.85*/}
+                                {/*                ? <img className={styles.imageBorderActive} src={borderActiveHalf} alt=""/>*/}
+                                {/*                : <img className={styles.imageBorderActive} src={borderActive} alt=""/>*/}
+                                {/*            : <img className={styles.imageBorderActive} src={borderActive} alt=""/>*/}
+                                {/*        : <img className={styles.imageBorderInactive} src={borderInactive} alt=""/>*/}
+                                {/*}*/}
+
+                                {/*{*/}
+                                {/*    percent < progress*/}
+                                {/*        ? id === 4*/}
+                                {/*            ? progress < 0.85*/}
+                                {/*                ?*/}
+                                {/*                :*/}
+                                {/*            : <img className={styles.imageBorderActive} src={borderActive} alt=""/>*/}
+                                {/*        :*/}
+                                {/*}*/}
+                                <img className={classNames(styles.imageBorderInactive, {
+                                    [styles.active]: percent >= progress
+                                })} src={borderInactive} alt=""/>
+                                {/*<img className={classNames(styles.imageBorderActive, {*/}
+                                {/*    [styles.active]: percent < progress && id === 4 && progress < 0.85*/}
+                                {/*})} src={borderActiveHalf} alt=""/>*/}
+                                <img className={classNames(styles.imageBorderActive, {
+                                    [styles.active]: percent < progress
+                                })} src={id === 4 && progress < 0.85 ? borderActiveHalf : borderActive} alt=""/>
                             </div>
 
                             <div className={classNames(styles.partBackground, styles.elementPart)}>
-                                {
-                                    percent < progress
-                                        ? <img className={styles.imageBackgroundActive} src={backgroundActive} alt=""/>
-                                        : <img className={styles.imageBackgroundInactive} src={backgroundInactive} alt=""/>
-                                }
+                                {/*{*/}
+                                {/*    percent < progress*/}
+                                {/*        ?*/}
+                                {/*:*/}
+                                {/*}*/}
+                                <img className={classNames(styles.imageBackgroundActive, {
+                                    [styles.active]: percent < progress
+                                })} src={backgroundActive} alt=""/>
+
+                                <img
+                                    className={
+                                        classNames(styles.imageBackgroundInactive, {
+                                            [styles.active]: percent >= progress
+                                        })} src={backgroundInactive}
+                                    alt=""/>
                             </div>
                         </div>
                     ))
@@ -125,13 +172,13 @@ export const Speedometer = () => {
             </div>
 
             <div className={styles.valuesPercent}>
-                <span className={styles.percent0}>0%</span>
-                <span className={styles.percent5}>-5%</span>
-                <span className={styles.percent10}>-10%</span>
-                <span className={styles.percent15}>-15%</span>
-                <span className={styles.percent20}>-20%</span>
-                <span className={styles.plusInfinity}>+∞</span>
-                <span className={styles.minusInfinity}>-∞</span>
+                <span onClick={() => setProgress(0.05)} className={styles.percent0}>0%</span>
+                <span onClick={() => setProgress(0.22)} className={styles.percent5}>-5%</span>
+                <span onClick={() => setProgress(0.36)} className={styles.percent10}>-10%</span>
+                <span onClick={() => setProgress(0.55)} className={styles.percent15}>-15%</span>
+                <span onClick={() => setProgress(0.78)} className={styles.percent20}>-20%</span>
+                <span  onClick={() => setProgress(0)} className={styles.plusInfinity}>+∞</span>
+                <span  onClick={() => setProgress(1)} className={styles.minusInfinity}>-∞</span>
             </div>
 
             <div className={styles.info}>

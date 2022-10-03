@@ -13,27 +13,69 @@
   }
 }
 
+$negativeValueWidthGallery: calc(-1 * var(--gallery-width));
+$negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
+
+@keyframes marquee {
+
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d($negativeValueWidthGallery, 0, 0);
+  }
+}
+
+@keyframes marquee2 {
+
+  0% {
+    transform: translate3d($negativeValueWidthMobileGallery, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .photosBar {
   display: flex;
   flex-flow: row nowrap;
-  overflow: hidden;
+  //overflow: hidden;
+  //width: 100%;
   position: relative;
+  //transition: all 25s linear;
+  //display: inline-block;
+  animation: marquee 35s linear infinite alternate;
+  width: auto;
+  z-index: 1000;
+
+  &:hover {
+    animation-play-state: paused;
+  }
 
   &:after {
     content: '';
     position: absolute;
     top: 50%;
+    left: 0;
     transform: translateY(-50%);
+    //width: var(--gallery-width);
+    width: 7000px;
+    //width: 6050px;
     height: 150px;
-    width: 100%;
     background: rgba(217, 217, 217, 0.3);
   }
 }
 
 .photoBar {
-  width: 243px;
+  min-width: 243px;
+  max-width: 243px;
   height: 243px;
   margin-right: 64px;
+
+  .image {
+    width: 100%;
+    height: auto;
+  }
 
   &:first-child {
     margin-left: 64px;
@@ -46,9 +88,18 @@
   }
 }
 
+.mobilePhotosBar {
+  animation: marquee2 35s linear infinite alternate!important;
+  margin-top: 40px;
+
+  &:after {
+    width: var(--gallery-mobile-width);
+  }
+}
+
 
 .mobilePhotoBar {
-  margin-top: 40px;
+
 
   &:first-child {
     margin-left: -128px;

@@ -23,7 +23,7 @@
 .arrow {
   position: absolute;
   transform-origin: 46% 88%;
-  transition: transform .1s linear;
+  transition: transform 0.5s linear;
   transform: rotate(-130deg);
   top: 15%;
   left: 45%;
@@ -35,6 +35,7 @@
     left: 40%;
   }
 }
+
 
 .part {
   position: absolute;
@@ -63,6 +64,12 @@
   .partBorder {
     width: 50px;
   }
+
+  .partBackground {
+    //img {
+    //  transition: opacity .5s linear;
+    //}
+  }
 }
 
 .part-1 {
@@ -76,6 +83,10 @@
     width: 120px;
     top: 3.5%;
     left: 1%;
+
+    //img {
+    //  transition: opacity 1s linear;
+    //}
   }
 
   .partBorder {
@@ -96,6 +107,10 @@
     top: 3.5%;
     left: 4.3%;
     width: 75px;
+
+    //img {
+    //  transition: opacity 1.5s linear;
+    //}
   }
 
   .partBorder {
@@ -116,6 +131,10 @@
     top: 3.6%;
     left: 0.3%;
     width: 75px;
+
+    //img {
+    //  transition: opacity 2s linear;
+    //}
   }
 
   .partBorder {
@@ -136,6 +155,10 @@
     top: 3.1%;
     left: -24.4%;
     width: 114px;
+
+    //img {
+    //  transition: opacity 2.5s linear;
+    //}
   }
 
   .partBorder {
@@ -156,12 +179,30 @@
   height: auto;
 }
 
+
+
+.partBackground,
 .partBorder {
-  z-index: 2;
+  z-index: 1;
+
+  .imageBorderActive,
+  .imageBackgroundInactive {
+    transform: translateY(-100%);
+  }
+
+  img {
+    opacity: 0;
+    display: flex;
+    transition: opacity 1s linear;
+
+    &.active {
+      opacity: 1;
+    }
+  }
 }
 
-.partBackground {
-  z-index: 1;
+.partBorder {
+  z-index: 2;
 }
 
 .valuesPercent {
@@ -170,6 +211,7 @@
   height: 100%;
   top: 0;
   left: 0;
+  //z-index: 2;
 
   span {
     font-size: 20px;
