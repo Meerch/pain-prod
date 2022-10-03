@@ -44,13 +44,13 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
   position: relative;
   //transition: all 25s linear;
   //display: inline-block;
-  animation: marquee 35s linear infinite alternate;
+  animation: marquee 70s linear infinite alternate;
   width: auto;
   z-index: 1000;
 
-  &:hover {
-    animation-play-state: paused;
-  }
+  //&:hover {
+  //  animation-play-state: paused;
+  //}
 
   &:after {
     content: '';
@@ -59,7 +59,7 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
     left: 0;
     transform: translateY(-50%);
     //width: var(--gallery-width);
-    width: 7000px;
+    width: 9500px;
     //width: 6050px;
     height: 150px;
     background: rgba(217, 217, 217, 0.3);
@@ -89,7 +89,7 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
 }
 
 .mobilePhotosBar {
-  animation: marquee2 35s linear infinite alternate!important;
+  animation: marquee2 70s linear infinite alternate!important;
   margin-top: 40px;
 
   &:after {

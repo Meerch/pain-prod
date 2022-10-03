@@ -1,6 +1,7 @@
 import styles from './Gallery.module.scss'
 import React, {useEffect, useRef, useState} from "react";
 import classNames from "classnames";
+import Image from "next/image";
 
 const photos = [
     '/images/gallery/nft-1.jpg',
@@ -83,7 +84,13 @@ export const Gallery = () => {
                             {
                                 photoUrl.includes('mp4')
                                     ? <video className={styles.image} src={photoUrl} muted loop autoPlay></video>
-                                    : <img className={styles.image} src={photoUrl} alt="photo nft"/>
+                                    : <Image
+                                        width={243}
+                                        height={243}
+                                        className={styles.image}
+                                        src={photoUrl}
+                                        alt="photo nft"
+                                    />
                             }
                         </div>
                     ))
@@ -99,7 +106,13 @@ export const Gallery = () => {
                                 {
                                     photoUrl.includes('mp4')
                                         ? <video className={styles.image} src={photoUrl} muted loop autoPlay></video>
-                                        : <img className={styles.image} src={photoUrl} alt="photo nft"/>
+                                        : <Image
+                                            width={243}
+                                            height={243}
+                                            className={styles.image}
+                                            src={photoUrl}
+                                            alt="photo nft"
+                                        />
                                 }
                             </div>
                         ))
