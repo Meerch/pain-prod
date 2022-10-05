@@ -1,49 +1,48 @@
 import styles from './Gallery.module.scss'
 import React, {useEffect, useRef, useState} from "react";
-import classNames from "classnames";
-import Image from "next/image";
+import classNames from "classnames"
 
 const photos = [
-    '/images/gallery/nft-1.jpg',
-    '/images/gallery/nft-2.jpg',
-    '/images/gallery/nft-3.jpg',
-    '/images/gallery/nft-4.jpg',
-    '/images/gallery/nft-5.jpg',
-    '/images/gallery/nft-6.mp4',
-    '/images/gallery/nft-7.jpg',
-    '/images/gallery/nft-8.jpg',
-    '/images/gallery/nft-9.jpg',
-    '/images/gallery/nft-10.jpg',
-    '/images/gallery/nft-11.png',
-    '/images/gallery/nft-12.png',
-    '/images/gallery/nft-13.png',
-    '/images/gallery/nft-14.mp4',
-    '/images/gallery/nft-15.jpg',
-    '/images/gallery/nft-16.jpg',
-    '/images/gallery/nft-17.png',
-    '/images/gallery/nft-18.png',
-    '/images/gallery/nft-19.jpg',
-    '/images/gallery/nft-20.mp4',
-    '/images/gallery/nft-21.jpg',
-    '/images/gallery/nft-22.png',
-    '/images/gallery/nft-23.jpg',
-    '/images/gallery/nft-24.png',
-    '/images/gallery/nft-25.jpg',
-    '/images/gallery/nft-26.jpg',
-    '/images/gallery/nft-27.jpg',
-    '/images/gallery/nft-28.jpg',
-    '/images/gallery/nft-29.jpg',
-    '/images/gallery/nft-30.mp4',
-    '/images/gallery/nft-31.jpg',
-    '/images/gallery/nft-32.jpg',
-    '/images/gallery/nft-33.jpg',
-    '/images/gallery/nft-34.jpg',
-    '/images/gallery/nft-35.jpg',
-    '/images/gallery/nft-36.jpg',
-    '/images/gallery/nft-37.jpg',
-    '/images/gallery/nft-38.jpg',
-    '/images/gallery/nft-39.jpg',
-    '/images/gallery/nft-40.png',
+    '/images/gallery/optimizate/nft-1.jpg',
+    '/images/gallery/optimizate/nft-2.jpg',
+    '/images/gallery/optimizate/nft-3.jpg',
+    '/images/gallery/optimizate/nft-4.jpg',
+    '/images/gallery/optimizate/nft-5.jpg',
+    // '/images/gallery/optimizate/nft-6.gif',
+    '/images/gallery/optimizate/nft-7.jpg',
+    '/images/gallery/optimizate/nft-8.jpg',
+    '/images/gallery/optimizate/nft-9.jpg',
+    '/images/gallery/optimizate/nft-10.jpg',
+    '/images/gallery/optimizate/nft-11.png',
+    '/images/gallery/optimizate/nft-12.png',
+    '/images/gallery/optimizate/nft-13.png',
+    // '/images/gallery/optimizate/nft-14.gif',
+    '/images/gallery/optimizate/nft-15.jpg',
+    '/images/gallery/optimizate/nft-16.jpg',
+    '/images/gallery/optimizate/nft-17.png',
+    '/images/gallery/optimizate/nft-18.png',
+    '/images/gallery/optimizate/nft-19.jpg',
+    // '/images/gallery/optimizate/nft-20.gif',
+    '/images/gallery/optimizate/nft-21.jpg',
+    '/images/gallery/optimizate/nft-22.png',
+    '/images/gallery/optimizate/nft-23.jpg',
+    '/images/gallery/optimizate/nft-24.png',
+    '/images/gallery/optimizate/nft-25.jpg',
+    '/images/gallery/optimizate/nft-26.jpg',
+    '/images/gallery/optimizate/nft-27.jpg',
+    '/images/gallery/optimizate/nft-28.jpg',
+    '/images/gallery/optimizate/nft-29.jpg',
+    // '/images/gallery/optimizate/nft-30.gif',
+    '/images/gallery/optimizate/nft-31.jpg',
+    '/images/gallery/optimizate/nft-32.jpg',
+    '/images/gallery/optimizate/nft-33.jpg',
+    '/images/gallery/optimizate/nft-34.jpg',
+    '/images/gallery/optimizate/nft-35.jpg',
+    '/images/gallery/optimizate/nft-36.jpg',
+    '/images/gallery/optimizate/nft-37.jpg',
+    '/images/gallery/optimizate/nft-38.jpg',
+    '/images/gallery/optimizate/nft-39.jpg',
+    '/images/gallery/optimizate/nft-40.png',
 ]
 
 const splitHalfPhotos = (part: number) => {
@@ -81,17 +80,22 @@ export const Gallery = () => {
                         <div key={photoUrl} className={classNames(styles.photoBar, {
                             [styles.mobile]: !isDesktop
                         })}>
-                            {
-                                photoUrl.includes('mp4')
-                                    ? <video className={styles.image} src={photoUrl} muted loop autoPlay></video>
-                                    : <Image
-                                        width={243}
-                                        height={243}
-                                        className={styles.image}
-                                        src={photoUrl}
-                                        alt="photo nft"
-                                    />
-                            }
+                            {/*{*/}
+                            {/*    photoUrl.includes('mp4')*/}
+                            {/*        ? <video className={styles.image} src={photoUrl} muted loop autoPlay></video>*/}
+                            {/*        : <Image*/}
+                            {/*            width={243}*/}
+                            {/*            height={243}*/}
+                            {/*            className={styles.image}*/}
+                            {/*            src={photoUrl}*/}
+                            {/*            alt="photo nft"*/}
+                            {/*        />*/}
+                            {/*}*/}
+                            <img
+                                className={styles.image}
+                                src={photoUrl}
+                                alt="photo nft"
+                            />
                         </div>
                     ))
                 }
@@ -103,17 +107,22 @@ export const Gallery = () => {
                     {
                         splitHalfPhotos(2).map((photoUrl) => (
                             <div key={photoUrl} className={classNames(styles.photoBar, styles.mobilePhotoBar)}>
-                                {
-                                    photoUrl.includes('mp4')
-                                        ? <video className={styles.image} src={photoUrl} muted loop autoPlay></video>
-                                        : <Image
-                                            width={243}
-                                            height={243}
-                                            className={styles.image}
-                                            src={photoUrl}
-                                            alt="photo nft"
-                                        />
-                                }
+                                {/*{*/}
+                                {/*    photoUrl.includes('mp4')*/}
+                                {/*        ? <video className={styles.image} src={photoUrl} muted loop autoPlay></video>*/}
+                                {/*        : <Image*/}
+                                {/*            width={243}*/}
+                                {/*            height={243}*/}
+                                {/*            className={styles.image}*/}
+                                {/*            src={photoUrl}*/}
+                                {/*            alt="photo nft"*/}
+                                {/*        />*/}
+                                {/*}*/}
+                                <img
+                                    className={styles.image}
+                                    src={photoUrl}
+                                    alt="photo nft"
+                                />
                             </div>
                         ))
                     }

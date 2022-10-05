@@ -1,0 +1,31 @@
+@import "styles/variables";
+
+.links {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  margin-top: 80px;
+  align-items: center;
+
+  @media (min-width: $media-min-screen) {
+    flex-flow: row nowrap;
+    margin-top: 50px;
+  }
+}
+
+.link {
+  padding: 10px;
+  margin-bottom: 10px;
+
+  @media (min-width: $media-min-screen) {
+    margin-bottom: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+
+    @media (min-width: $media-min-screen) {
+      margin-left: 570px;
+    }
+  }
+}

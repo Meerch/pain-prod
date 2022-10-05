@@ -1,13 +1,9 @@
-import {Header} from "../components/Header";
-import {Speedometer} from "../components/Speedometer";
-import {Logo} from "../components/Logo";
-import {Description} from "../components/Description";
-import {InfoPanels} from "../components/InfoPanels";
 import {useEffect, useState} from "react";
 import {DesktopWrapper} from "../components/Wrapper/DesktopWrapper";
 import {MobileWrapper} from "../components/Wrapper/MobileWrapper";
 import {Gallery} from "../components/Gallery";
 import {Footer} from "../components/Footer";
+import {Links} from "../components/Links";
 
 export default function Home() {
     const [isDesktop, setIsDesktop] = useState(false)
@@ -26,6 +22,7 @@ export default function Home() {
                     ? <DesktopWrapper />
                     : <MobileWrapper />
             }
+            <Links />
             <Gallery />
             <Footer />
             <img className='background-element background-statistic' src="/images/background-statistic-btc.png" alt=""/>
