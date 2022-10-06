@@ -51,18 +51,15 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d($negativeValueWidthGallery, 0, 0);
+    //transform: translate3d($negativeValueWidthGallery, 0, 0);
+    transform: translate3d(-100%, 0, 0);
   }
 }
 
-@keyframes marquee2 {
-
-  0% {
-    transform: translate3d($negativeValueWidthMobileGallery, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .photosBar {
@@ -74,6 +71,7 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
   //transition: all 25s linear;
   //display: inline-block;
   //animation: marquee 70s linear infinite alternate;
+  animation: marquee 30s linear infinite;
   width: auto;
   z-index: 1000;
 
@@ -88,7 +86,7 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
     left: 0;
     transform: translateY(-50%);
     //width: var(--gallery-width);
-    width: 9500px;
+    width: 100%;
     //width: 6050px;
     height: 150px;
     background: rgba(217, 217, 217, 0.3);
@@ -106,31 +104,27 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
     height: auto;
   }
 
-  &:first-child {
-    margin-left: 64px;
-  }
+  //&:first-child {
+  //  margin-left: 64px;
+  //}
 
-  &.mobile {
-    &:first-child {
-      margin-left: -64px;
-    }
-  }
+  //&.mobile {
+  //  &:first-child {
+  //    margin-left: -64px;
+  //  }
+  //}
 }
 
 .mobilePhotosBar {
-  animation: marquee2 70s linear infinite alternate!important;
+  animation: marquee 30s linear infinite reverse!important;
   margin-top: 40px;
 
-  &:after {
-    width: var(--gallery-mobile-width);
-  }
+  //&:after {
+  //  width: var(--gallery-mobile-width);
+  //}
 }
 
 
 .mobilePhotoBar {
 
-
-  &:first-child {
-    margin-left: -128px;
-  }
 }

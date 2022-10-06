@@ -6,7 +6,7 @@ import {initialRotateArrow, parts} from "./constants";
 export const Speedometer = () => {
     const [progress, setProgress] = useState(0)
 
-    const mainProgress = 1
+    const mainProgress = 0.74
 
     const calculateRotateArrow = () => {
         return initialRotateArrow + (260 * progress)
