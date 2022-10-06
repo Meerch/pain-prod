@@ -65,7 +65,9 @@ export const Gallery = () => {
                     // freeMode={true}
                     // allowTouchMove={false}
                     autoplay={{
-                        delay: 500
+                        delay: 500,
+                        disableOnInteraction: false,
+                        reverseDirection: true
                     }}
                     loopFillGroupWithBlank={true}
                     // FreeMode
