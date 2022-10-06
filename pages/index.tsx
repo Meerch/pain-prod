@@ -27,7 +27,11 @@ export default function Home() {
             <Footer />
             <img className='background-element background-statistic' src="/images/background-statistic-btc.png" alt=""/>
             <img className='background-element background-dancer' src="/images/background-element-2.gif" alt=""/>
-            <img className='background-element background-status' src="/images/mint-status.png" alt="mint status"/>
+            {/*<img className='background-element background-status' src="/images/mint-status.png" alt="mint status"/>*/}
+            <div className='background-element background-status'>
+                <span className='title'>Mint start</span>
+                <span className='status'>TBA</span>
+            </div>
         </div>
     )
 }

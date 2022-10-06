@@ -1,5 +1,5 @@
 import '../styles/globals.scss'
-import {NextPage} from "next";
+import 'swiper/css';
 import {AppProps} from 'next/app';
 import Head from "next/head";
 

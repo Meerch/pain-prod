@@ -1,58 +1,7 @@
 import styles from './Speedometer.module.scss'
 import classNames from "classnames";
 import {useEffect, useState} from "react"
-
-const parts = [
-    {
-        id: 0,
-        percent: 0,
-        borderActive: '/images/speedometer/part-0/border-active.svg',
-        borderInactive: '/images/speedometer/part-0/border-inactive.svg'
-    },
-    {
-        id: 1,
-        percent: 0.15,
-        borderActive: '/images/speedometer/part-1/border-active.svg',
-        borderInactive: '/images/speedometer/part-1/border-inactive.svg',
-        backgroundActive: '/images/speedometer/part-1/background-active.svg',
-        backgroundInactive: '/images/speedometer/part-1/background-inactive.svg',
-    },
-    {
-        id: 2,
-        percent: 0.32,
-        borderActive: '/images/speedometer/part-2/border-active.svg',
-        borderInactive: '/images/speedometer/part-2/border-inactive.svg',
-        backgroundActive: '/images/speedometer/part-2/background-active.svg',
-        backgroundInactive: '/images/speedometer/part-2/background-inactive.svg',
-    },
-    {
-        id: 3,
-        percent: 0.50,
-        borderActive: '/images/speedometer/part-3/border-active.svg',
-        borderInactive: '/images/speedometer/part-3/border-inactive.svg',
-        backgroundActive: '/images/speedometer/part-3/background-active.svg',
-        backgroundInactive: '/images/speedometer/part-3/background-inactive.svg',
-    },
-    {
-        id: 4,
-        percent: 0.68,
-        borderActive: '/images/speedometer/part-4/border-active.svg',
-        borderActiveHalf: '/images/speedometer/part-4/border-active-half.svg',
-        borderInactive: '/images/speedometer/part-4/border-inactive.svg',
-        backgroundActive: '/images/speedometer/part-4/background-active.svg',
-        backgroundInactive: '/images/speedometer/part-4/background-inactive.svg',
-    }
-]
-const initialRotateArrow = -130
-
-// const gapsRotates: { [key: string]: [number, number] } = {
-//     0: [0, 30],
-//     0.2: [45, 75],
-//     0.4: [90, 122],
-//     0.6: [135, 170],
-//     0.8: [182, 215],
-//     // 1: [0, 0]
-// }
+import {initialRotateArrow, parts} from "./constants";
 
 export const Speedometer = () => {
     const [progress, setProgress] = useState(0)
@@ -111,59 +60,47 @@ export const Speedometer = () => {
                                    backgroundInactive
                                }) => (
                         <div key={id} className={classNames(styles.part, styles[`part-${id}`])}>
-                            {/*{borderActive && <img className={styles.borderActive} src={borderActive} alt=""/>}*/}
-                            {/*{borderActiveHalf && <img className={styles.borderActiveHalf} src={borderActiveHalf} alt=""/>}*/}
-                            {/*{borderInactive && <img className={styles.borderInactive} src={borderInactive} alt=""/>}*/}
-                            {/*{backgroundActive && <img className={styles.backgroundActive} src={backgroundActive} alt=""/>}*/}
-                            {/*{backgroundInactive &&*/}
-                            {/*    <img className={styles.backgroundInactive} src={backgroundInactive} alt=""/>}*/}
-                            <div  className={classNames(styles.partBorder, styles.elementPart)}>
-                                {/*onClick={() => setProgress(percent + 0.1)}*/}
-                                {/*{*/}
-                                {/*    percent < progress*/}
-                                {/*        ? id === 4*/}
-                                {/*            ? progress < 0.85*/}
-                                {/*                ? <img className={styles.imageBorderActive} src={borderActiveHalf} alt=""/>*/}
-                                {/*                : <img className={styles.imageBorderActive} src={borderActive} alt=""/>*/}
-                                {/*            : <img className={styles.imageBorderActive} src={borderActive} alt=""/>*/}
-                                {/*        : <img className={styles.imageBorderInactive} src={borderInactive} alt=""/>*/}
-                                {/*}*/}
+                            <div className={classNames(styles.partBorder, styles.elementPart)}>
+                                <img
+                                    className={classNames(
+                                        styles.imageBorderInactive,
+                                        {[styles.active]: percent >= progress}
+                                    )}
+                                    src={borderInactive}
+                                    alt=""
+                                />
 
-                                {/*{*/}
-                                {/*    percent < progress*/}
-                                {/*        ? id === 4*/}
-                                {/*            ? progress < 0.85*/}
-                                {/*                ?*/}
-                                {/*                :*/}
-                                {/*            : <img className={styles.imageBorderActive} src={borderActive} alt=""/>*/}
-                                {/*        :*/}
-                                {/*}*/}
-                                <img className={classNames(styles.imageBorderInactive, {
-                                    [styles.active]: percent >= progress
-                                })} src={borderInactive} alt=""/>
-                                {/*<img className={classNames(styles.imageBorderActive, {*/}
-                                {/*    [styles.active]: percent < progress && id === 4 && progress < 0.85*/}
-                                {/*})} src={borderActiveHalf} alt=""/>*/}
-                                <img className={classNames(styles.imageBorderActive, {
-                                    [styles.active]: percent < progress
-                                })} src={id === 4 && progress < 0.85 ? borderActiveHalf : borderActive} alt=""/>
+                                <img
+                                    className={classNames(
+                                        styles.imageBorderActive,
+                                        {[styles.active]: percent < progress}
+                                    )}
+                                    src={
+                                        id === 4 && progress < 0.85
+                                            ? borderActiveHalf
+                                            : borderActive
+                                    }
+                                    alt=""
+                                />
                             </div>
 
                             <div className={classNames(styles.partBackground, styles.elementPart)}>
-                                {/*{*/}
-                                {/*    percent < progress*/}
-                                {/*        ?*/}
-                                {/*:*/}
-                                {/*}*/}
-                                <img className={classNames(styles.imageBackgroundActive, {
-                                    [styles.active]: percent < progress
-                                })} src={backgroundActive} alt=""/>
+                                <img
+                                    className={classNames(
+                                        styles.imageBackgroundActive,
+                                        {[styles.active]: percent < progress}
+                                    )}
+                                    src={backgroundActive}
+                                    alt=""
+                                />
 
                                 <img
                                     className={
-                                        classNames(styles.imageBackgroundInactive, {
-                                            [styles.active]: percent >= progress
-                                        })} src={backgroundInactive}
+                                        classNames(
+                                            styles.imageBackgroundInactive,
+                                            {[styles.active]: percent >= progress}
+                                        )}
+                                    src={backgroundInactive}
                                     alt=""/>
                             </div>
                         </div>
@@ -177,8 +114,8 @@ export const Speedometer = () => {
                 <span onClick={() => setProgress(0.36)} className={styles.percent10}>-10%</span>
                 <span onClick={() => setProgress(0.55)} className={styles.percent15}>-15%</span>
                 <span onClick={() => setProgress(0.78)} className={styles.percent20}>-20%</span>
-                <span  onClick={() => setProgress(0)} className={styles.plusInfinity}>+∞</span>
-                <span  onClick={() => setProgress(1)} className={styles.minusInfinity}>-∞</span>
+                <span onClick={() => setProgress(0)} className={styles.plusInfinity}>+∞</span>
+                <span onClick={() => setProgress(1)} className={styles.minusInfinity}>-∞</span>
             </div>
 
             <div className={styles.info}>
@@ -195,12 +132,6 @@ export const Speedometer = () => {
             <div className={styles.buttonMint}>
                 <span className={styles.text}>MINT PAIN</span>
             </div>
-
-            {/*<img*/}
-            {/*    className={styles.buttonMint}*/}
-            {/*    src="/images/button-mint.png"*/}
-            {/*    alt="Mint Pain"*/}
-            {/*/>*/}
 
             <img
                 style={{transform: `rotate(${calculateRotateArrow()}deg)`}}
