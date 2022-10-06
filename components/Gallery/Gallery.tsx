@@ -1,5 +1,5 @@
 import styles from './Gallery.module.scss'
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import classNames from "classnames"
 import {SwiperSlide, Swiper} from "swiper/react";
 import {photos} from "./constants";
@@ -32,14 +32,12 @@ export const Gallery = () => {
                 loop={true}
                 spaceBetween={65}
                 slidesPerView={"auto"}
-                // freeMode={true}
                 allowTouchMove={false}
                 autoplay={{
                     delay: 500,
                     disableOnInteraction: false
                 }}
                 loopFillGroupWithBlank={true}
-                // FreeMode
                 modules={[Autoplay]}
             >
                 {
@@ -62,15 +60,13 @@ export const Gallery = () => {
                     loop={true}
                     spaceBetween={65}
                     slidesPerView={"auto"}
-                    // freeMode={true}
-                    // allowTouchMove={false}
+                    allowTouchMove={true}
                     autoplay={{
                         delay: 500,
                         disableOnInteraction: false,
                         reverseDirection: true
                     }}
                     loopFillGroupWithBlank={true}
-                    // FreeMode
                     modules={[Autoplay]}
                 >
                     {
@@ -85,43 +81,7 @@ export const Gallery = () => {
                         ))
                     }
                 </Swiper>
-                // <div className={classNames(styles.photosBar, styles.mobilePhotosBar)}>
-                //
-                // </div>
             }
         </div>
-        // <div className={styles.gallery}>
-        //     <div ref={refMainBar} className={styles.photosBar}>
-        //         {
-        //             (isDesktop ? photos : splitHalfPhotos(1)).map((photoUrl) => (
-        //                 <div key={photoUrl} className={classNames(styles.photoBar, {
-        //                     [styles.mobile]: !isDesktop
-        //                 })}>
-        //                     <img
-        //                         className={styles.image}
-        //                         src={photoUrl}
-        //                         alt="photo nft"
-        //                     />
-        //                 </div>
-        //             ))
-        //         }
-        //     </div>
-        //
-        //     {
-        //         !isDesktop &&
-        //         <div ref={refMobileBar} className={classNames(styles.photosBar, styles.mobilePhotosBar)}>
-        //             {
-        //                 splitHalfPhotos(2).map((photoUrl) => (
-        //                     <div key={photoUrl} className={classNames(styles.photoBar, styles.mobilePhotoBar)}>
-        //                         <img
-        //                             className={styles.image}
-        //                             src={photoUrl}
-        //                             alt="photo nft"
-        //                         />
-        //                     </div>
-        //                 ))
-        //             }
-        //         </div>}
-        // </div>
     );
 };
