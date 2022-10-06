@@ -71,9 +71,10 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
   //transition: all 25s linear;
   //display: inline-block;
   //animation: marquee 70s linear infinite alternate;
-  animation: marquee 30s linear infinite;
+  animation: marquee 70s linear infinite;
   width: auto;
   z-index: 1000;
+  will-change: contents;
 
   //&:hover {
   //  animation-play-state: paused;
@@ -116,7 +117,7 @@ $negativeValueWidthMobileGallery: calc(-1 * var(--gallery-mobile-width));
 }
 
 .mobilePhotosBar {
-  animation: marquee 30s linear infinite reverse!important;
+  animation: marquee 70s linear infinite reverse!important;
   margin-top: 40px;
 
   //&:after {
