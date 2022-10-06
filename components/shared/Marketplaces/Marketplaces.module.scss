@@ -2,16 +2,38 @@
 
 .marketplaces {
   display: none;
+  width: 220px;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  z-index: 1000!important;
 
   @media (min-width: $media-min-screen) {
     display: flex;
-    width: 220px;
-    justify-content: space-between;
-    align-items: center;
-    height: auto;
   }
 }
 
 .marketplace {
   cursor: pointer;
+
+  &:nth-child(1) {
+    img {
+      width: 65px;
+      height: auto;
+    }
+  }
+
+  &:nth-child(2) {
+    img {
+      width: 51px;
+      height: auto;
+    }
+  }
+
+  &:nth-child(3) {
+    img {
+      width: 56px;
+      height: auto;
+    }
+  }
 }

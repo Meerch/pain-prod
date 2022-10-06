@@ -12,6 +12,29 @@
   }
 }
 
-.socialLinks {
+.socialLink {
   cursor: pointer;
+
+  img {
+    height: auto;
+    width: 43px;
+  }
+
+  //&:nth-child(1) {
+  //  img {
+  //    width: 42px;
+  //  }
+  //}
+  //
+  //&:nth-child(2) {
+  //  img {
+  //    width: 42px;
+  //  }
+  //}
+  //
+  //&:nth-child(3) {
+  //  img {
+  //    width: 42px;
+  //  }
+  //}
 }
