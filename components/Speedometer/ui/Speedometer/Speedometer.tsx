@@ -2,9 +2,12 @@ import styles from './Speedometer.module.scss'
 import classNames from "classnames";
 import {useEffect, useState} from "react"
 import {initialRotateArrow, parts} from "./constants";
+import {PopupActions} from "../../../../store/Popup/PopupSlice";
+import {useTypedDispatch} from "../../../../hooks/useTypedDispatch";
 
 export const Speedometer = () => {
     const [progress, setProgress] = useState(0)
+    const dispatch = useTypedDispatch()
 
     const mainProgress = 0.74
 
@@ -14,6 +17,10 @@ export const Speedometer = () => {
 
     const handlerChangeProgress = (value: number) => {
         setProgress(prev => +(prev + value).toFixed(2))
+    }
+
+    const openModalMint = () => {
+        dispatch(PopupActions.changeCurrentPopup('mint'))
     }
 
     useEffect(() => {
@@ -129,7 +136,7 @@ export const Speedometer = () => {
                 </span>
             </div>
 
-            <div className={styles.buttonMint}>
+            <div onClick={openModalMint} className={styles.buttonMint}>
                 <span className={styles.text}>MINT PAIN</span>
             </div>
 

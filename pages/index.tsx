@@ -1,30 +1,28 @@
-import {useEffect, useState} from "react";
 import {DesktopWrapper} from "../components/Wrapper/DesktopWrapper";
 import {MobileWrapper} from "../components/Wrapper/MobileWrapper";
 import {Gallery} from "../components/Gallery";
 import {Footer} from "../components/Footer";
 import {Links} from "../components/Links";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useTypedDispatch} from "../hooks/useTypedDispatch";
+import {PopupActions} from "../store/Popup/PopupSlice";
+import {MobilePopupMint, DesktopPopupMint} from "../components/Popup/PopupMint";
+import {useDetectDevice} from "../hooks/useDetectDevice";
+import PopupSuccess from "../components/Popup/PopupSuccess/PopupSuccess";
 
 export default function Home() {
-    const [isDesktop, setIsDesktop] = useState(true)
+    const currentPopup = useTypedSelector(state => state.popup.currentPopup)
+    const dispatch = useTypedDispatch()
+    const {isMobile, isDesktop} = useDetectDevice()
 
-    useEffect(() => {
-        if (window === undefined) {
-            return
-        }
-
-        if (window.screen.width < 1280) {
-            setIsDesktop(false)
-        }
-    }, [])
+    const closeModal = () => {
+        dispatch(PopupActions.changeCurrentPopup(null))
+    }
 
     return (
         <div className='content-app'>
-            {
-                isDesktop
-                    ? <DesktopWrapper/>
-                    : <MobileWrapper/>
-            }
+            {isDesktop && <DesktopWrapper/>}
+            {isMobile && <MobileWrapper/>}
             <Links/>
             <Gallery/>
             <Footer/>
@@ -35,6 +33,17 @@ export default function Home() {
                 <span className='title'>Mint start</span>
                 <span className='status'>TBA</span>
             </div>
+
+            { currentPopup === 'mint' &&
+                <>
+                    {isDesktop && <DesktopPopupMint onClose={closeModal}/>}
+                    {isMobile && <MobilePopupMint onClose={closeModal}/>}
+                </>
+            }
+
+            { currentPopup === 'success' &&
+                <PopupSuccess onClose={closeModal} />
+            }
         </div>
     )
 }
