@@ -1,0 +1,50 @@
+@import "styles/variables";
+
+.buttonMint {
+    background: url("/images/button-mint-4x.png") no-repeat 100% 100% / cover;
+    width: 200px;
+    height: 90px;
+    position: absolute;
+    top: 105%;
+    left: 15%;
+    //transform: translateX(-50%);
+    display: flex;
+    cursor: pointer;
+
+    @media (min-width: $media-min-screen) {
+        width: 290px;
+        height: 120px;
+        left: 20%;
+        top: 98%;
+    }
+
+    &:after {
+        content: 'mint price: 0.02 eth';
+        font-size: 20px;
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 100%;
+        text-transform: uppercase;
+
+        @media (min-width: $media-min-screen) {
+            font-size: 28px;
+        }
+    }
+
+    .text {
+        margin: auto;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 10px;
+
+        @media (min-width: $media-min-screen) {
+            font-size: 34px;
+            letter-spacing: 1px;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 700;
+        }
+    }
+}

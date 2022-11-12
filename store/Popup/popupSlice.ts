@@ -11,8 +11,8 @@ const initialState: PopupState = {
     currentPopup: null
 }
 
-export const PopupSlice = createSlice({
-    name: 'counter',
+export const popupSlice = createSlice({
+    name: 'popupSlice',
     initialState,
     reducers: {
         changeCurrentPopup: (state, action: PayloadAction<CurrentPopup>) => {
@@ -21,7 +21,5 @@ export const PopupSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
-export const { actions: PopupActions } = PopupSlice
-
-export const {reducer: PopupReducer} = PopupSlice
+export const { actions: popupActions } = popupSlice
+export const { reducer: popupReducer} = popupSlice

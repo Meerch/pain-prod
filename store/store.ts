@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { PopupReducer } from './Popup/PopupSlice'
+import { speedometerReducer } from '../components/Speedometer/model/slice/spedometerSlice'
+import { popupReducer } from './Popup/popupSlice'
 
 const rootReducer = {
-    popup: PopupReducer
+    popup: popupReducer,
+    speedometer: speedometerReducer
 }
 
 export const store = configureStore({

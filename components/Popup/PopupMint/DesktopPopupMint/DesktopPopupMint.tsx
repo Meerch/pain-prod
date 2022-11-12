@@ -2,8 +2,8 @@ import React, {FC, useState} from 'react';
 import styles from './DesktopPopupMint.module.scss'
 import PopupLayout from '../../PopupLayout/PopupLayout';
 import classNames from "classnames";
-import {PopupActions} from "../../../../store/Popup/PopupSlice";
 import {useTypedDispatch} from "../../../../hooks/useTypedDispatch";
+import { popupActions } from '../../../../store/Popup/popupSlice';
 
 interface PopupLayoutProps {
     onClose: () => void
@@ -18,7 +18,7 @@ const DesktopPopupMint: FC<PopupLayoutProps> = ({onClose}) => {
     }
 
     const onClickButton = () => {
-        dispatch(PopupActions.changeCurrentPopup('success'))
+        dispatch(popupActions.changeCurrentPopup('success'))
     }
 
     return (

@@ -4,7 +4,7 @@
 // import {SwiperSlide, Swiper} from "swiper/react";
 // import {photos} from "./constants";
 // import {Autoplay} from "swiper";
-// import { splitHalfPhotos } from './utils';
+// import { splitHalfPhotos } from './utils.ts';
 //
 // export const Gallery = () => {
 //     const [isDesktop, setIsDesktop] = useState(false)

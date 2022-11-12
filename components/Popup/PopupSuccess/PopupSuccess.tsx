@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styles from './PopupSuccess.module.scss'
 import PopupLayout from '../PopupLayout/PopupLayout';
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
-import {PopupActions} from "../../../store/Popup/PopupSlice";
+import {popupActions} from "../../../store/Popup/popupSlice";
 
 interface PopupLayoutProps {
     onClose: () => void
@@ -12,7 +12,7 @@ const PopupSuccess: FC<PopupLayoutProps> = ({onClose}) => {
     const dispatch = useTypedDispatch()
 
     const onClickButton = () => {
-        dispatch(PopupActions.changeCurrentPopup(null))
+        dispatch(popupActions.changeCurrentPopup(null))
     }
 
     return (

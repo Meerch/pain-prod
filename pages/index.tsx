@@ -5,10 +5,10 @@ import {Footer} from "../components/Footer";
 import {Links} from "../components/Links";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useTypedDispatch} from "../hooks/useTypedDispatch";
-import {PopupActions} from "../store/Popup/PopupSlice";
 import {MobilePopupMint, DesktopPopupMint} from "../components/Popup/PopupMint";
 import {useDetectDevice} from "../hooks/useDetectDevice";
 import PopupSuccess from "../components/Popup/PopupSuccess/PopupSuccess";
+import {popupActions} from "../store/Popup/popupSlice";
 
 export default function Home() {
     const currentPopup = useTypedSelector(state => state.popup.currentPopup)
@@ -16,7 +16,7 @@ export default function Home() {
     const {isMobile, isDesktop} = useDetectDevice()
 
     const closeModal = () => {
-        dispatch(PopupActions.changeCurrentPopup(null))
+        dispatch(popupActions.changeCurrentPopup(null))
     }
 
     return (
@@ -34,15 +34,15 @@ export default function Home() {
                 <span className='status'>TBA</span>
             </div>
 
-            { currentPopup === 'mint' &&
+            {currentPopup === 'mint' &&
                 <>
                     {isDesktop && <DesktopPopupMint onClose={closeModal}/>}
                     {isMobile && <MobilePopupMint onClose={closeModal}/>}
                 </>
             }
 
-            { currentPopup === 'success' &&
-                <PopupSuccess onClose={closeModal} />
+            {currentPopup === 'success' &&
+                <PopupSuccess onClose={closeModal}/>
             }
         </div>
     )

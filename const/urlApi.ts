@@ -1,0 +1,1 @@
+export const urlApi = 'https://sea-lion-app-mmo6o.ondigitalocean.app'

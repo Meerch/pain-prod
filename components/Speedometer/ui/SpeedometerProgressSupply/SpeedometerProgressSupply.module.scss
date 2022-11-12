@@ -1,0 +1,33 @@
+@import "styles/variables";
+
+.speedometerProgressSupply {
+    position: absolute;
+    width: 115%;
+    top: -20%;
+    left: -7%;
+
+    @media (min-width: $media-min-screen) {
+        top: 15%;
+        left: -13%;
+
+        path {
+            strokeWidth: 3px;
+        }
+    }
+
+    stop:nth-child(1) {
+        stop-color: #FF0000;
+    }
+
+    stop:nth-child(2) {
+        stop-color: #9F0000;
+    }
+
+    stop:nth-child(3) {
+        stop-color: transparent;
+    }
+
+    stop:nth-child(4) {
+        stop-color: transparent;
+    }
+}

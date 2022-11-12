@@ -1,0 +1,18 @@
+@import "styles/variables";
+
+.arrow {
+    position: absolute;
+    transform-origin: 46% 88%;
+    transition: transform 0.5s linear;
+    transform: rotate(-130deg);
+    top: 15%;
+    left: 45%;
+    width: 31px;
+    z-index: 9;
+
+    @media (min-width: $media-min-screen) {
+        width: auto;
+        top: 19%;
+        left: 40%;
+    }
+}
