@@ -48,13 +48,26 @@ export const InfoPanels = () => {
         })
     }
 
-    for (let i = 0; i < 4; i++) {
-        useContractRead(generateContractPainSetting('availableSupply', {
-            args: [i],
-            onSuccess: (data) => changeSupplies(i, data),
-            select: (data) => toWei(formatEther(data))
-        }))
-    }
+    useContractRead(generateContractPainSetting('availableSupply', {
+        args: [0],
+        onSuccess: (data) => changeSupplies(0, data),
+        select: (data) => toWei(formatEther(data))
+    }))
+    useContractRead(generateContractPainSetting('availableSupply', {
+        args: [1],
+        onSuccess: (data) => changeSupplies(1, data),
+        select: (data) => toWei(formatEther(data))
+    }))
+    useContractRead(generateContractPainSetting('availableSupply', {
+        args: [2],
+        onSuccess: (data) => changeSupplies(2, data),
+        select: (data) => toWei(formatEther(data))
+    }))
+    useContractRead(generateContractPainSetting('availableSupply', {
+        args: [3],
+        onSuccess: (data) => changeSupplies(3, data),
+        select: (data) => toWei(formatEther(data))
+    }))
 
     const calcProgress = (currentSupply: number, maxSupply: number) => {
         return 100 / (maxSupply / currentSupply)
