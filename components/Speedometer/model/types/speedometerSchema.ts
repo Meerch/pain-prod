@@ -11,6 +11,6 @@ export interface MetaToken {
 export interface SpeedometerSchema {
     stats?: Stats
     metaToken?: MetaToken
-    currentRound?: number
+    currentRound?: number | string
     signature?: any
 }
