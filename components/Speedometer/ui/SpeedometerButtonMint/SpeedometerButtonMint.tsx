@@ -20,6 +20,15 @@ const SpeedometerButtonMint = memo((props: SpeedometerButtonMintProps) => {
     const signature = useSelector((state: RootState) => state.speedometer?.signature)
     const {address} = useAccount()
 
+    const {
+        data: canFreeMint,
+        isLoading: isLoadingCanFreeMint
+    } = useContractRead(generateContractPainSetting('canFreeMint', {
+        args: signature && address && [signature, address],
+        onSuccess: data => console.log('canFreeMint', data)
+        // select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
+    }))
+
     const {data: mintPrice, isLoading: isLoadingMintPrice} = useContractRead(generateContractPainSetting('mintPrice', {
         select: (data) => +formatEther(data)
     }))
@@ -50,7 +59,7 @@ const SpeedometerButtonMint = memo((props: SpeedometerButtonMintProps) => {
         })}>
             <span className={styles.text}>
                 {
-                    signature
+                    canFreeMint
                         ? 'FREE MINT'
                         : 'MINT PAIN'
                 }
@@ -65,5 +74,7 @@ const SpeedometerButtonMint = memo((props: SpeedometerButtonMintProps) => {
         </div>
     );
 })
+
+SpeedometerButtonMint.displayName = 'SpeedometerButtonMint'
 
 export default SpeedometerButtonMint;

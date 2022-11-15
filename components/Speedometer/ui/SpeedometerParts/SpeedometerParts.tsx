@@ -74,4 +74,6 @@ const SpeedometerParts = memo((props: SpeedometerPartsProps) => {
     )
 })
 
+SpeedometerParts.displayName = 'SpeedometerParts'
+
 export default SpeedometerParts;

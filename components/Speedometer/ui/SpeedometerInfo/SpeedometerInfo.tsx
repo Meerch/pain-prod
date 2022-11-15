@@ -29,4 +29,6 @@ const SpeedometerInfo = memo((props: SpeedometerInfoProps) => {
     )
 })
 
+SpeedometerInfo.displayName = 'SpeedometerInfo'
+
 export default SpeedometerInfo

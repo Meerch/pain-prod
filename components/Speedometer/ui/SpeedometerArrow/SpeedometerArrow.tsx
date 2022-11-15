@@ -43,4 +43,6 @@ const SpeedometerArrow = memo(({progress}: SpeedometerArrowProps) => {
     );
 })
 
+SpeedometerArrow.displayName = 'SpeedometerArrow'
+
 export default SpeedometerArrow;
