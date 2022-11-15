@@ -8,7 +8,9 @@ export const fetchWhitelistSignature = createAsyncThunk<any, string, {rejectValu
     ) => {
         const { rejectWithValue } = thunkAPI
         try {
-            const response = await axios.post<any>(`${urlApi}/whitelist-signature`, address)
+            const response = await axios.post<any>(`${urlApi}/whitelist-signature`, {
+                address
+            })
 
             if (!response.data) {
                 throw new Error('server error')

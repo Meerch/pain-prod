@@ -1,25 +1,27 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import styles from './MobilePopupMint.module.scss'
 import PopupLayout from '../../PopupLayout/PopupLayout';
 import classNames from "classnames";
-import {popupActions} from "../../../../store/Popup/popupSlice";
-import {useTypedDispatch} from "../../../../hooks/useTypedDispatch";
+import {useMintProcess} from "../model/useMintProcess";
 
 interface PopupLayoutProps {
     onClose: () => void
 }
 
 const MobilePopupMint: FC<PopupLayoutProps> = ({onClose}) => {
-    const [amount, setAmount] = useState(0)
-    const dispatch = useTypedDispatch()
 
-    const changeAmount = (value: number) => {
-        setAmount(prev => prev + value)
-    }
-
-    const onClickButton = () => {
-        dispatch(popupActions.changeCurrentPopup('success'))
-    }
+    const {
+        isLoadingMintPrice,
+        isLoading,
+        mintPrice,
+        stats,
+        changeAmount,
+        error,
+        canFreeMint,
+        amount,
+        onClickButton,
+        changePrice
+    } = useMintProcess()
 
     return (
         <PopupLayout onClose={onClose} className={styles.popup}>
@@ -35,13 +37,17 @@ const MobilePopupMint: FC<PopupLayoutProps> = ({onClose}) => {
                     <div className={styles.edition}>
                         Edition of 6666
                     </div>
-                    <span className={styles.price}>0.02 eth</span>
+                    <span className={styles.price}>{mintPrice ? mintPrice : 'Loading...'} eth</span>
                 </div>
 
                 <div className={styles.infoPrice}>
-                    <span className={styles.currentPrice}>Current ETH price: $1233</span>
+                    <span className={styles.currentPrice}>
+                        Current ETH price: ${stats?.eth ? stats?.eth?.toFixed(0) : "Loading..."}
+                    </span>
                     <div className={styles.priceChange}>
-                        24h ETH PRICE change: <span className={styles.mark}>-4.2%</span>
+                        24h ETH PRICE change: <span className={styles.mark}>
+                        {changePrice ? changePrice : 'Loading...'}%
+                    </span>
                     </div>
                 </div>
             </div>
@@ -52,10 +58,19 @@ const MobilePopupMint: FC<PopupLayoutProps> = ({onClose}) => {
                 <span className={styles.amountValue}>{amount}</span>
                 <div onClick={() => changeAmount(1)} className={styles.plus}/>
             </div>
-            <span className={styles.total}>in total: 0.04 ETH</span>
-            <span className={styles.available}>available: 20</span>
-            <button onClick={onClickButton} className={classNames(styles.button)}>
-                GET PAIN NFT
+            <span className={styles.total}>
+                in total: {mintPrice ? +mintPrice * amount : 'Loading...'} ETH
+            </span>
+            <span className={styles.available}>available: {+changePrice > -15 ? 5 : 3}</span>
+            {isLoading && <span className={styles.loading}>Loading...</span>}
+            <button onClick={onClickButton} className={classNames(styles.button, {
+                [styles.inactive]: isLoading || error
+            })}>
+                {
+                    error
+                        ? error
+                        : canFreeMint ? 'GET FREE PAIN NFT' : 'GET PAIN NFT'
+                }
             </button>
         </PopupLayout>
     );

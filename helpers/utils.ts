@@ -11,6 +11,7 @@ export const formatEther = (value1: BigNumberish): string => {
     return ethers.utils.formatEther(value1)
 }
 
+
 export const toWei = (value2: string): number => {
     return +web3.utils.toWei(value2, "ether")
 }

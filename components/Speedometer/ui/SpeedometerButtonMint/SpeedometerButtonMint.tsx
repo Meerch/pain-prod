@@ -1,20 +1,69 @@
-import React from 'react';
+import React, {memo, useEffect} from 'react';
 import styles from "./SpeedometerButtonMint.module.scss";
 import {useTypedDispatch} from "../../../../hooks/useTypedDispatch";
 import {popupActions} from "../../../../store/Popup/popupSlice";
+import {useAccount, useContractRead} from 'wagmi';
+import {generateContractPainSetting} from '../../../../blockchain/utils';
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../store/store";
+import {fetchWhitelistSignature} from "../../model/services/fetchWhitelistSignature";
+import classNames from 'classnames';
+import {formatEther} from "../../../../helpers/utils";
 
-const SpeedometerButtonMint = () => {
+interface SpeedometerButtonMintProps {
+    changePrice?: number
+}
+
+const SpeedometerButtonMint = memo((props: SpeedometerButtonMintProps) => {
+    const {changePrice} = props
     const dispatch = useTypedDispatch()
+    const signature = useSelector((state: RootState) => state.speedometer?.signature)
+    const {address} = useAccount()
+
+    const {data: mintPrice, isLoading: isLoadingMintPrice} = useContractRead(generateContractPainSetting('mintPrice', {
+        select: (data) => +formatEther(data)
+    }))
+
+    // const {data: changePrice, refetch}: Pick<{ data: number }, any> = useContractRead(generateContractPainSetting('canFreeMint', {
+    //     args: signature && signature,
+    //     onSuccess: data => console.log('canMint', data)
+    //     // select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
+    // }))
+
+    useEffect(() => {
+        console.log(address)
+        if (address) {
+            dispatch(fetchWhitelistSignature(address))
+        }
+    }, [address])
 
     const openModalMint = () => {
+        if (!changePrice || changePrice >= 0) {
+            return
+        }
         dispatch(popupActions.changeCurrentPopup('mint'))
     }
 
     return (
-        <div onClick={openModalMint} className={styles.buttonMint}>
-            <span className={styles.text}>MINT PAIN</span>
+        <div onClick={openModalMint} className={classNames(styles.buttonMint, {
+            [styles.disable]: !changePrice || changePrice >= 0
+        })}>
+            <span className={styles.text}>
+                {
+                    signature
+                        ? 'FREE MINT'
+                        : 'MINT PAIN'
+                }
+            </span>
+            <span className={styles.price}>
+                 {
+                     isLoadingMintPrice || !mintPrice
+                        ? 'Loading...'
+                        : `mint price: ${mintPrice} eth`
+                }
+            </span>
         </div>
     );
-};
+})
 
 export default SpeedometerButtonMint;

@@ -113,6 +113,16 @@ export const abiPain = [{"inputs": [], "stateMutability": "nonpayable", "type": 
     "stateMutability": "view",
     "type": "function"
 }, {
+    "inputs": [{"internalType": "bytes", "name": "signature", "type": "bytes"}, {
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+    }],
+    "name": "_validateSignature",
+    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+    "stateMutability": "view",
+    "type": "function"
+}, {
     "inputs": [{"internalType": "address", "name": "to", "type": "address"}, {
         "internalType": "uint256",
         "name": "tokenId",
@@ -131,11 +141,11 @@ export const abiPain = [{"inputs": [], "stateMutability": "nonpayable", "type": 
     "stateMutability": "view",
     "type": "function"
 }, {
-    "inputs": [{"internalType": "uint256", "name": "tokensToMint", "type": "uint256"}, {
-        "internalType": "uint256",
-        "name": "nonce",
-        "type": "uint256"
-    }, {"internalType": "bytes", "name": "signature", "type": "bytes"}],
+    "inputs": [{"internalType": "bytes", "name": "signature", "type": "bytes"}, {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+    }],
     "name": "canFreeMint",
     "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
     "stateMutability": "view",
@@ -180,24 +190,20 @@ export const abiPain = [{"inputs": [], "stateMutability": "nonpayable", "type": 
     "type": "function"
 }, {
     "inputs": [{"internalType": "uint80", "name": "_roundId", "type": "uint80"}, {
-        "internalType": "uint256",
-        "name": "nonce",
-        "type": "uint256"
-    }, {"internalType": "bytes", "name": "signature", "type": "bytes"}],
-    "name": "feelSomePain",
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+    }], "name": "feelSomePain", "outputs": [], "stateMutability": "nonpayable", "type": "function"
+}, {
+    "inputs": [{"internalType": "uint80", "name": "_roundId", "type": "uint80"}, {
+        "internalType": "bytes",
+        "name": "signature",
+        "type": "bytes"
+    }, {"internalType": "int256", "name": "_lastPrice", "type": "int256"}],
+    "name": "feelSomePainTest",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {
-    "inputs": [{"internalType": "uint80", "name": "_roundId", "type": "uint80"}, {
-        "internalType": "uint256",
-        "name": "nonce",
-        "type": "uint256"
-    }, {"internalType": "bytes", "name": "signature", "type": "bytes"}, {
-        "internalType": "int256",
-        "name": "_lastPrice",
-        "type": "int256"
-    }], "name": "feelSomePainTest", "outputs": [], "stateMutability": "nonpayable", "type": "function"
 }, {
     "inputs": [],
     "name": "findRound",
@@ -480,5 +486,4 @@ export const abiPain = [{"inputs": [], "stateMutability": "nonpayable", "type": 
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-}, {"stateMutability": "payable", "type": "receive"}
-]
+}, {"stateMutability": "payable", "type": "receive"}]

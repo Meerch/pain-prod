@@ -69,6 +69,7 @@
         letter-spacing: 0.8px;
 
         .mark {
+            font-size: 15px;
             color: #F20D0D;
         }
     }
@@ -162,7 +163,7 @@
 
 
         &.inactive {
-            cursor: pointer;
+            cursor: default;
             background-color: #2E0607;
             color: #504B62;
             
@@ -199,4 +200,9 @@
     &:after {
         transform: translate(-50%, -50%) rotate(135deg);
     }
+}
+
+.loadingBlock {
+    margin: auto;
+    font-size: 40px;
 }

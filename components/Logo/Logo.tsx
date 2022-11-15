@@ -1,6 +1,26 @@
 import styles from './Logo.module.scss'
+import {useState} from "react";
+import {useContractRead} from "wagmi";
+import {generateContractPainSetting} from "../../blockchain/utils";
+import {formatEther, toWei} from "../../helpers/utils";
 
 export const Logo = () => {
+    const [supplies, setSupplies] = useState([])
+    const changeSupplies = (index: number, data) => {
+        setSupplies(prev => {
+            const clone = [...prev]
+            clone[index] = data
+            return clone
+        })
+    }
+
+    for (let i = 0; i < 4; i++) {
+        useContractRead(generateContractPainSetting('availableSupply', {
+            args: [i],
+            onSuccess: (data) => changeSupplies(i, data),
+            select: (data) => toWei(formatEther(data))
+        }))
+    }
 
     return (
         <div className={styles.logo}>
@@ -29,7 +49,14 @@ export const Logo = () => {
                     src="/images/logo-descriptions/nft-minted-4x.png"
                     alt="NFT minted"
                 />
-                <span className={styles.amount}>2522/6666</span>
+                <span className={styles.amount}>
+                    {
+                        supplies?.length
+                            ? supplies?.reduce((a, b) => a + b)
+                            : 6666
+                    }
+                    /6666
+                </span>
             </div>
         </div>
     )

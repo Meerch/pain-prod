@@ -3,6 +3,8 @@ import styles from './PopupSuccess.module.scss'
 import PopupLayout from '../PopupLayout/PopupLayout';
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {popupActions} from "../../../store/Popup/popupSlice";
+import {RootState} from "../../../store/store";
+import { useSelector } from 'react-redux';
 
 interface PopupLayoutProps {
     onClose: () => void
@@ -10,6 +12,7 @@ interface PopupLayoutProps {
 
 const PopupSuccess: FC<PopupLayoutProps> = ({onClose}) => {
     const dispatch = useTypedDispatch()
+    const amountMintedNfts = useSelector((state: RootState) => state.popup.amountMintedNfts)
 
     const onClickButton = () => {
         dispatch(popupActions.changeCurrentPopup(null))
@@ -19,7 +22,7 @@ const PopupSuccess: FC<PopupLayoutProps> = ({onClose}) => {
         <PopupLayout onClose={onClose} className={styles.popup}>
             <img className={styles.logo} src="/images/logo-2.jpg" alt="PAIN"/>
             <div className={styles.title}>Congratulations!</div>
-            <div className={styles.description}>You have succesfully purchased <span className={styles.mark}>5</span> PAIN NFTs!</div>
+            <div className={styles.description}>You have succesfully purchased <span className={styles.mark}>{amountMintedNfts}</span> PAIN NFTs!</div>
             <button onClick={onClickButton} className={styles.button}>
                 Cool
             </button>

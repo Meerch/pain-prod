@@ -4,11 +4,13 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export type CurrentPopup = 'mint' | 'success' | null
 
 export interface PopupState {
-    currentPopup: CurrentPopup
+    currentPopup: CurrentPopup,
+    amountMintedNfts: number
 }
 
 const initialState: PopupState = {
-    currentPopup: null
+    currentPopup: null,
+    amountMintedNfts: 1
 }
 
 export const popupSlice = createSlice({
@@ -17,6 +19,9 @@ export const popupSlice = createSlice({
     reducers: {
         changeCurrentPopup: (state, action: PayloadAction<CurrentPopup>) => {
             state.currentPopup = action.payload
+        },
+        setAmountMintedNfts: (state, action: PayloadAction<number>) => {
+            state.amountMintedNfts = action.payload
         }
     },
 })

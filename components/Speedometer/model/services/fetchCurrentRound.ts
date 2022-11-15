@@ -10,7 +10,6 @@ export const fetchCurrentRound = createAsyncThunk<string, void, {rejectValue: st
         const { rejectWithValue } = thunkAPI
         try {
             const response = await axios.get<string>(`${urlApi}/round-id`)
-            console.log('response', String(response.data))
 
             if (!response.data) {
                 throw new Error('server error')

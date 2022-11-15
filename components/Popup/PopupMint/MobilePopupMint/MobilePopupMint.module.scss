@@ -168,9 +168,18 @@
     margin-top: 9px;
 }
 
+.available {
+    margin-bottom: 40px;
+}
+
+.loading {
+    font-size: 25px;
+    margin-bottom: 10px;
+    //margin-top: 40px;
+}
+
 .button {
     cursor: pointer;
-    margin-top: 40px;
     width: 100%;
     background-color: #A10004;
     color: #fff;

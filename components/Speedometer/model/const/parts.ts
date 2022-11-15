@@ -1,13 +1,13 @@
 export const parts = [
     {
         id: 0,
-        percent: 0,
+        isActive: (progress: number) => true,
         borderActive: '/images/speedometer/part-0/border-active.svg',
         borderInactive: '/images/speedometer/part-0/border-inactive.svg'
     },
     {
         id: 1,
-        percent: 0.15,
+        isActive: (progress: number) => progress < 0,
         borderActive: '/images/speedometer/part-1/border-active.svg',
         borderInactive: '/images/speedometer/part-1/border-inactive.svg',
         backgroundActive: '/images/speedometer/part-1/background-active.svg',
@@ -15,7 +15,7 @@ export const parts = [
     },
     {
         id: 2,
-        percent: 0.32,
+        isActive: (progress: number) => progress <= -5,
         borderActive: '/images/speedometer/part-2/border-active.svg',
         borderInactive: '/images/speedometer/part-2/border-inactive.svg',
         backgroundActive: '/images/speedometer/part-2/background-active.svg',
@@ -23,7 +23,7 @@ export const parts = [
     },
     {
         id: 3,
-        percent: 0.50,
+        isActive: (progress: number) => progress <= -10,
         borderActive: '/images/speedometer/part-3/border-active.svg',
         borderInactive: '/images/speedometer/part-3/border-inactive.svg',
         backgroundActive: '/images/speedometer/part-3/background-active.svg',
@@ -31,7 +31,8 @@ export const parts = [
     },
     {
         id: 4,
-        percent: 0.68,
+        isActive: (progress: number) => progress <= -15,
+        isActiveFull: (progress: number) => progress < -20,
         borderActive: '/images/speedometer/part-4/border-active.svg',
         borderActiveHalf: '/images/speedometer/part-4/border-active-half.svg',
         borderInactive: '/images/speedometer/part-4/border-inactive.svg',

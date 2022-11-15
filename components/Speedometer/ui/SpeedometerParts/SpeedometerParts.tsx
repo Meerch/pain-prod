@@ -7,7 +7,7 @@ interface SpeedometerPartsProps {
     progress: number
 }
 
-const SpeedometerParts = (props: SpeedometerPartsProps) => {
+const SpeedometerParts = memo((props: SpeedometerPartsProps) => {
     const {progress} = props
 
     return (
@@ -18,7 +18,8 @@ const SpeedometerParts = (props: SpeedometerPartsProps) => {
                                borderInactive,
                                borderActive,
                                borderActiveHalf,
-                               percent,
+                               isActive,
+                               isActiveFull,
                                backgroundActive,
                                backgroundInactive
                            }) => (
@@ -27,7 +28,7 @@ const SpeedometerParts = (props: SpeedometerPartsProps) => {
                             <img
                                 className={classNames(
                                     styles.imageBorderInactive,
-                                    {[styles.active]: percent >= progress}
+                                    {[styles.active]: !isActive(progress)}
                                 )}
                                 src={borderInactive}
                                 alt=""
@@ -36,10 +37,10 @@ const SpeedometerParts = (props: SpeedometerPartsProps) => {
                             <img
                                 className={classNames(
                                     styles.imageBorderActive,
-                                    {[styles.active]: percent < progress}
+                                    {[styles.active]: isActive(progress)}
                                 )}
                                 src={
-                                    id === 4 && progress < 0.85
+                                    id === 4 && !isActiveFull(progress)
                                         ? borderActiveHalf
                                         : borderActive
                                 }
@@ -51,7 +52,7 @@ const SpeedometerParts = (props: SpeedometerPartsProps) => {
                             <img
                                 className={classNames(
                                     styles.imageBackgroundActive,
-                                    {[styles.active]: percent < progress}
+                                    {[styles.active]: isActive(progress)}
                                 )}
                                 src={backgroundActive}
                                 alt=""
@@ -61,7 +62,7 @@ const SpeedometerParts = (props: SpeedometerPartsProps) => {
                                 className={
                                     classNames(
                                         styles.imageBackgroundInactive,
-                                        {[styles.active]: percent >= progress}
+                                        {[styles.active]: !isActive(progress)}
                                     )}
                                 src={backgroundInactive}
                                 alt=""/>
@@ -71,6 +72,6 @@ const SpeedometerParts = (props: SpeedometerPartsProps) => {
             }
         </div>
     )
-}
+})
 
 export default SpeedometerParts;

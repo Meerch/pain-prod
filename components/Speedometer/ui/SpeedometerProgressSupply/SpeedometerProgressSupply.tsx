@@ -1,11 +1,39 @@
-import React, { FC } from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import styles from "./SpeedometerProgressSupply.module.scss";
+import {useContractRead} from "wagmi";
+import {generateContractPainSetting} from "../../../../blockchain/utils";
+import {formatEther, toWei} from "../../../../helpers/utils";
 
-interface SpeedometerBorderProps {
-    progress: number
-}
 
-const SpeedometerProgressSupply: FC<SpeedometerBorderProps> = ({progress}) => {
+const SpeedometerProgressSupply = memo(() => {
+    const [supplies, setSupplies] = useState([])
+    const [progress, setProgress] = useState(0)
+    const changeSupplies = (index: number, data) => {
+        setSupplies(prev => {
+            const clone = [...prev]
+            clone[index] = data
+            return clone
+        })
+    }
+    for (let i = 0; i < 4; i++) {
+        useContractRead(generateContractPainSetting('availableSupply', {
+            args: [i],
+            onSuccess: (data) => changeSupplies(i, data),
+            select: (data) => toWei(formatEther(data))
+        }))
+    }
+
+    useEffect(() => {
+        if (!supplies?.length || !supplies) {
+            return
+        }
+
+        const sumSupplies = supplies.reduce((supply1, supply2) => supply1 + supply2)
+        const newProgress = +(100 / (6666 / (6666 - sumSupplies))).toFixed(2)
+        setProgress(newProgress)
+    }, [supplies])
+
+
     return (
         <svg className={styles.speedometerProgressSupply} width="526" height="437" viewBox="0 0 526 437" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -16,13 +44,13 @@ const SpeedometerProgressSupply: FC<SpeedometerBorderProps> = ({progress}) => {
             >
             </path>
             <linearGradient id="gradient">
-                <stop offset="0%" />
-                <stop offset="50%" />
-                <stop offset="50.1%" />
-                <stop offset="100%" />
+                <stop offset="0%"/>
+                <stop offset={`${progress || 0}%`}/>
+                <stop offset={`${(progress || 0) + 0.1}%`}/>
+                <stop offset="100%"/>
             </linearGradient>
         </svg>
-    );
-}
+    )
+})
 
 export default SpeedometerProgressSupply;

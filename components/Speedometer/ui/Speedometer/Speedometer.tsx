@@ -1,5 +1,5 @@
 import styles from './Speedometer.module.scss'
-import {useCallback, useEffect, useState} from "react"
+import {useEffect, useState} from "react"
 import SpeedometerParts from "../SpeedometerParts/SpeedometerParts";
 import SpeedometerProgressSupply from "../SpeedometerProgressSupply/SpeedometerProgressSupply";
 import SpeedometerPercents from "../SpeedometerPercents/SpeedometerPercents";
@@ -10,71 +10,51 @@ import {useTypedDispatch} from "../../../../hooks/useTypedDispatch";
 import {fetchStats} from "../../model/services/fetchStats";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../store/store";
-import {fetchWhitelistSignature} from "../../model/services/fetchWhitelistSignature";
-import {useAccount, useContractRead} from "wagmi";
+import {useContractRead} from "wagmi";
 import {generateContractPainSetting} from "../../../../blockchain/utils";
 import {fetchCurrentRound} from "../../model/services/fetchCurrentRound";
 import {formatEther, toWei} from '../../../../helpers/utils';
 
-
-export const initialRotateArrow = -130
 // const mainProgress = 0.74
 
 export const Speedometer = () => {
-    const [progress, setProgress] = useState(0)
     const stats = useSelector((state: RootState) => state.speedometer?.stats)
-    const signature = useSelector((state: RootState) => state.speedometer?.signature)
     const dispatch = useTypedDispatch()
-    const {address} = useAccount()
+
+    const [progress, setProgress] = useState(0)
     const currentRound = useSelector((state: RootState) => state.speedometer?.currentRound)
     const {data: changePrice}: Pick<{ data: number }, any> = useContractRead(generateContractPainSetting('getDiff', {
         args: currentRound && currentRound,
+        enabled: currentRound,
         select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
     }))
-    const [mainProgress, setMainProgress] = useState(0)
 
-    // useEffect(() => {
-    //     console.log('changePrice', changePrice)
-    //     console.log('currentRound', currentRound)
-    // }, [changePrice, currentRound])
-    //
-    // useEffect(() => {
-    //     if (changePrice) {
-    //         let calcProgress
-    //
-    //         setMainProgress(changePrice / 100)
-    //     }
-    // }, [changePrice])
-    //
-    const handlerChangeProgress = useCallback((value: number) => {
-        setProgress(value)
-    }, [mainProgress])
+    useEffect(() => {
+        dispatch(fetchCurrentRound())
+        dispatch(fetchStats())
+    }, [])
 
-    // useEffect(() => {
-    //
-    // }, [changePrice])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchCurrentRound())
-    //     dispatch(fetchStats())
-    //     dispatch(fetchWhitelistSignature(address))
-    // }, [address])
-    //
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setProgress(prev => {
-    //             if (prev >= mainProgress) {
-    //                 clearInterval(timer)
-    //                 return prev
-    //             }
-    //             return +(prev + 0.01).toFixed(2)
-    //         })
-    //     }, 100)
-    //
-    //     return () => {
-    //         clearInterval(timer)
-    //     }
-    // }, [mainProgress])
+
+    useEffect(() => {
+        if (!changePrice) {
+            return
+        }
+        const timer = setInterval(() => {
+            setProgress(prev => {
+                const isStopUpdateProgress = changePrice >= 0
+                    ? prev >= changePrice
+                    : prev <= changePrice
+                if (isStopUpdateProgress) {
+                    clearInterval(timer)
+                    return prev
+                }
+                const additionalInterval = +(changePrice / 50).toFixed(2)
+                return +(prev + additionalInterval).toFixed(2)
+            })
+        }, 100)
+
+        return () => clearInterval(timer)
+    }, [changePrice])
 
 
 
@@ -84,12 +64,10 @@ export const Speedometer = () => {
             <SpeedometerParts
                 progress={progress}
             />
-            <SpeedometerProgressSupply
-                progress={progress}
-            />
-            <SpeedometerPercents changeProgress={handlerChangeProgress}/>
+            <SpeedometerProgressSupply/>
+            <SpeedometerPercents />
             <SpeedometerInfo ethPrice={stats?.eth} changePrice={changePrice}/>
-            <SpeedometerButtonMint />
+            <SpeedometerButtonMint changePrice={changePrice}/>
             <SpeedometerArrow progress={progress} />
         </div>
     )
