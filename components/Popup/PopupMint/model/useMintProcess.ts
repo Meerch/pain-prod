@@ -95,7 +95,7 @@ export const useMintProcess = () => {
     }, [isSuccessMint, isSuccessFreeMint])
 
     const onClickButton = () => {
-        if (isLoading || error) {
+        if (isLoading || (error && !canFreeMint)) {
             return
         }
 

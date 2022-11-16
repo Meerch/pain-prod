@@ -56,10 +56,10 @@ const DesktopPopupMint: FC<PopupLayoutProps> = ({onClose}) => {
                             in total: {mintPrice ? +mintPrice * amount : 'Loading...'} ETH
                         </span>
                         <button onClick={onClickButton} className={classNames(styles.button, {
-                            [styles.inactive]: isLoading || error
+                            [styles.inactive]: isLoading || (error && !canFreeMint)
                         })}>
                             {
-                                error
+                                (error && !canFreeMint)
                                     ? error
                                     : canFreeMint ? 'GET FREE PAIN NFT' : 'GET PAIN NFT'
                             }
