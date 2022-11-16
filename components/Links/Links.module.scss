@@ -1,22 +1,28 @@
 @import "styles/variables";
 
+
 .links {
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;
-  margin-top: 80px;
+  margin-top: 180px;
   align-items: center;
   z-index: 10;
 
   @media (min-width: $media-min-screen) {
     flex-flow: row nowrap;
-    margin-top: 50px;
+    margin-top: -60px;
+    justify-content: left;
   }
 }
 
 .link {
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
+  font-size: 27px;
+  color: #fff;
+  text-outline: none;
+  text-decoration: none;
 
   @media (min-width: $media-min-screen) {
     margin-bottom: 0;
@@ -26,7 +32,46 @@
     margin-bottom: 0;
 
     @media (min-width: $media-min-screen) {
-      margin-left: 570px;
+      //margin-left: 570px;
+      margin-left: 95px;
     }
   }
 }
+
+
+.poweredBy {
+  background: rgba(217, 217, 217, 0.1);
+  padding: 13px 20px 13px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0;
+  width: 100%;
+  margin-bottom: 55px;
+
+  @media (min-width: $media-min-screen) {
+    justify-content: left;
+    width: auto;
+    margin-right: 35px;
+    margin-bottom: 0;
+  }
+
+  .text {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .img {
+    margin-left: 15px;
+  }
+
+  .on {
+    font-size: 22px;
+    margin-left: 22px;
+  }
+
+  .gifEth {
+    margin-left: 20px;
+  }
+}
+

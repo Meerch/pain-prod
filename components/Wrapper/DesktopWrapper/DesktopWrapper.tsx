@@ -4,6 +4,7 @@ import {Description} from "../../Description";
 import {InfoPanels} from "../../InfoPanels";
 import {Header} from "../../Header";
 import {Speedometer} from "../../Speedometer";
+import {Links} from "../../Links";
 
 export const DesktopWrapper = () => {
 
@@ -18,6 +19,8 @@ export const DesktopWrapper = () => {
                     <InfoPanels/>
                 </div>
             </div>
+
+            <Links/>
 
         </div>
     );

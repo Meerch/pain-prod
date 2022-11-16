@@ -1,7 +1,6 @@
 @import "styles/variables";
 
 .buttonMint {
-    background: url("/images/button-mint-4x.png") no-repeat 100% 100% / cover;
     width: 225px;
     height: 90px;
     position: absolute;
@@ -9,7 +8,29 @@
     left: 7%;
     //transform: translateX(-50%);
     display: flex;
-    cursor: pointer;
+    //cursor: pointer;
+
+   .wrapperButton {
+       position: relative;
+       cursor: pointer;
+       z-index: 1000;
+       width: 225px;
+       height: 90px;
+       background: url("/images/button-mint-4x.png") no-repeat 100% 100% / cover;
+       svg {
+           display: none;
+       }
+
+       @media (min-width: $media-min-screen) {
+           width: auto;
+           height: auto;
+           background: none
+       ;
+           svg {
+               display: block;
+           }
+       }
+   }
 
     @media (min-width: $media-min-screen) {
         width: 290px;
@@ -43,12 +64,22 @@
         font-size: 20px;
         font-weight: 400;
         letter-spacing: 10px;
+        position: absolute;
+        top: 47%;
+        left: 52%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        text-align: center;
 
         @media (min-width: $media-min-screen) {
-            font-size: 34px;
+            top: 35%;
+            left: 50%;
+            font-size: 35px;
             letter-spacing: 1px;
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 700;
+            //font-family: 'Work Sans', sans-serif;
+            font-weight: 400;
+            font-family: 'Titan One', cursive;
+
         }
     }
 }

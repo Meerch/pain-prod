@@ -4,6 +4,7 @@ import {Description} from "../../Description";
 import {InfoPanels} from "../../InfoPanels";
 import {Header} from "../../Header";
 import {Speedometer} from "../../Speedometer";
+import {Links} from "../../Links";
 
 export const MobileWrapper = () => {
 
@@ -13,6 +14,7 @@ export const MobileWrapper = () => {
             <Logo />
             <Description />
             <Speedometer />
+            <Links/>
             <InfoPanels />
         </div>
     );

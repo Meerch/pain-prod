@@ -9,6 +9,8 @@ import {RootState} from "../../../../store/store";
 import {fetchWhitelistSignature} from "../../model/services/fetchWhitelistSignature";
 import classNames from 'classnames';
 import {formatEther} from "../../../../helpers/utils";
+import {useHover} from "../../../../hooks/useHover";
+import {svgButton, svgButtonWithoutShadow} from "./svgButton";
 
 interface SpeedometerButtonMintProps {
     changePrice?: number
@@ -19,6 +21,7 @@ const SpeedometerButtonMint = memo((props: SpeedometerButtonMintProps) => {
     const dispatch = useTypedDispatch()
     const signature = useSelector((state: RootState) => state.speedometer?.signature)
     const {address} = useAccount()
+    const [isHover, bindHover] = useHover()
 
     const {
         data: canFreeMint,
@@ -47,7 +50,7 @@ const SpeedometerButtonMint = memo((props: SpeedometerButtonMintProps) => {
     }, [address])
 
     const openModalMint = () => {
-        if (!changePrice || changePrice >= 0) {
+        if (!changePrice || changePrice >= 0 || !address) {
             return
         }
         dispatch(popupActions.changeCurrentPopup('mint'))
@@ -57,13 +60,24 @@ const SpeedometerButtonMint = memo((props: SpeedometerButtonMintProps) => {
         <div onClick={openModalMint} className={classNames(styles.buttonMint, {
             [styles.disable]: !changePrice || changePrice >= 0
         })}>
-            <span className={styles.text}>
+            <div {...bindHover} className={styles.wrapperButton}>
                 {
-                    canFreeMint
-                        ? 'FREE MINT'
-                        : 'MINT PAIN'
+                    isHover
+                        ? svgButtonWithoutShadow
+                        : svgButton
                 }
-            </span>
+
+
+                <span className={styles.text}>
+                    {
+                        canFreeMint
+                            ? 'FREE MINT'
+                            : 'MINT PAIN'
+                    }
+                </span>
+
+            </div>
+
             <span className={styles.price}>
                  {
                      isLoadingMintPrice || !mintPrice

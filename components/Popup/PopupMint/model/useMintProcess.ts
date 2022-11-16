@@ -52,6 +52,7 @@ export const useMintProcess = () => {
                 setError(null)
             }
         },
+        onSuccess: () => setError(null),
         overrides: {
             from: address,
             value: ethers.utils.parseEther(String(+mintPrice * amount))

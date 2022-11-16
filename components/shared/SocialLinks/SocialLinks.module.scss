@@ -15,9 +15,16 @@
 .socialLink {
   cursor: pointer;
 
+  &:hover {
+    img {
+      filter: none;
+    }
+  }
+
   img {
     height: auto;
     width: 43px;
+    filter: drop-shadow(0px 8px 1.5px rgba(0, 0, 0, 0.85));
   }
 
   //&:nth-child(1) {

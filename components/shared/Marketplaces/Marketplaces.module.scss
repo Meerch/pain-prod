@@ -16,6 +16,16 @@
 .marketplace {
   cursor: pointer;
 
+  &:hover {
+    img {
+      filter: none;
+    }
+  }
+
+  img {
+    filter: drop-shadow(0px 8px 1.5px rgba(0, 0, 0, 0.9));
+  }
+
   &:nth-child(1) {
     img {
       width: 65px;

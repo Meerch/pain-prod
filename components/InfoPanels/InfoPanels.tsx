@@ -94,6 +94,7 @@ export const InfoPanels = () => {
                     <div key={title} className={classNames(styles.infoPanel, {
                         [styles.full]: activePanel === index
                     })}>
+                        {activePanel === index && <div className={styles.overlay}/>}
                         <span className={styles.title}>{title}</span>
                         <div className={styles.values}>
                             <span className={styles.change}>{change}</span>
