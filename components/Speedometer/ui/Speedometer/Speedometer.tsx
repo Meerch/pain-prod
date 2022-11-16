@@ -34,7 +34,6 @@ export const Speedometer = () => {
         dispatch(fetchStats())
     }, [])
 
-
     useEffect(() => {
         if (!changePrice) {
             return
@@ -55,9 +54,6 @@ export const Speedometer = () => {
 
         return () => clearInterval(timer)
     }, [changePrice])
-
-
-
 
     return (
         <div className={styles.speedometer}>
