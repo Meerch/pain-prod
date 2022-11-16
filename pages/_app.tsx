@@ -11,6 +11,8 @@ import {Chain, chain, configureChains, createClient, WagmiConfig,} from 'wagmi';
 import {publicProvider} from 'wagmi/providers/public';
 import {jsonRpcProvider} from 'wagmi/providers/jsonRpc';
 import {metaMaskWallet, walletConnectWallet} from '@rainbow-me/rainbowkit/wallets';
+import Script from 'next/script'
+
 
 const avalancheChain: Chain = {
     id: 5,
@@ -91,8 +93,8 @@ function App({Component, pageProps}: AppProps) {
             <meta name="theme-color" content="#ffffff"/>
             <title>Pain</title>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"/>
-            <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"/>
+            <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"/>
+            <Script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"/>
 
         </Head>
         <Provider store={store}>
