@@ -14,6 +14,7 @@ import FOG from 'vanta/dist/vanta.fog.min'
 import useSound from "use-sound";
 // @ts-ignore
 import soundClick from "../public/sounds/click.mp3";
+import Script from "next/script";
 
 export default function Home() {
     const currentPopup = useTypedSelector(state => state.popup.currentPopup)
@@ -86,7 +87,7 @@ export default function Home() {
             {
                 !isReady &&
                 <div className='loading'>
-                    <img  className='dancer' src="/images/dance.gif" alt=""/>
+                    <img className='dancer' src="/images/dance.gif" alt=""/>
                     <div className="loader">
                         <span className='text'>loading ...</span>
                         <img className='effect' src="/images/loading-effect.gif" alt=""/>
@@ -99,7 +100,8 @@ export default function Home() {
                 {isMobile && <MobileWrapper/>}
                 <Gallery/>
                 <Footer/>
-                <img className='background-element background-statistic' src="/images/background-statistic-btc.png" alt=""/>
+                <img className='background-element background-statistic' src="/images/background-statistic-btc.png"
+                     alt=""/>
                 {/*<img className='background-element background-dancer' src="/images/background-element-2.gif" alt=""/>*/}
                 {/*<img className='background-element background-status' src="/images/mint-status.png" alt="mint status"/>*/}
                 {/*<div className='background-element background-status'>*/}
