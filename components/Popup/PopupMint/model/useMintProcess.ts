@@ -59,20 +59,21 @@ export const useMintProcess = () => {
         }
     }))
 
-    const {write: onMint, data: dataMint} = useContractWrite(configMint)
+    const {write: onMint, data: dataMint, isLoading: isLoadingWriteMint} = useContractWrite(configMint)
     const {isLoading: isLoadingMint, isSuccess: isSuccessMint} = useWaitForTransaction({
         hash: dataMint?.hash
     })
+
     const {config: configFreeMint} = usePrepareContractWrite(generateContractPainSetting('feelSomePain', {
         args: currentRoundId && [currentRoundId, signature],
         onSuccess: data => console.log('mint ready', data)
     }))
 
-    const {write: onFreeMint, data: dataFreeMint} = useContractWrite(configFreeMint)
+    const {write: onFreeMint, data: dataFreeMint, isLoading: isLoadingWriteFreeMint} = useContractWrite(configFreeMint)
     const {isLoading: isLoadingFreeMint, isSuccess: isSuccessFreeMint} = useWaitForTransaction({
         hash: dataFreeMint?.hash
     })
-    const isLoading = isLoadingMintPrice || isLoadingCanFreeMint || isLoadingMint || isLoadingFreeMint
+    const isLoading = isLoadingMintPrice || isLoadingCanFreeMint || isLoadingMint || isLoadingFreeMint || isLoadingWriteMint || isLoadingWriteFreeMint
 
 
     const changeAmount = (value: number) => {
