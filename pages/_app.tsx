@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import {createWrapper} from 'next-redux-wrapper';
 import {store} from '../store/store';
 import '@rainbow-me/rainbowkit/styles.css';
-import {connectorsForWallets, RainbowKitProvider,} from '@rainbow-me/rainbowkit';
+import {connectorsForWallets, getDefaultWallets, RainbowKitProvider,} from '@rainbow-me/rainbowkit';
 import {Chain, chain, configureChains, createClient, WagmiConfig,} from 'wagmi';
 import {publicProvider} from 'wagmi/providers/public';
 import {jsonRpcProvider} from 'wagmi/providers/jsonRpc';
@@ -34,22 +34,26 @@ const {chains, provider} = configureChains(
     [avalancheChain],
     [
         jsonRpcProvider({
-            rpc: (chain) => ({
-                http: `https://rpc.ankr.com/eth_goerli`,
-            }),
+            rpc: chain => ({ http: chain.rpcUrls.default }),
         }),
     ]
 );
 
-const connectors = connectorsForWallets([
-    {
-        groupName: 'All',
-        wallets: [
-            metaMaskWallet({chains}),
-            walletConnectWallet({chains})
-        ]
-    }
-]);
+const {connectors} = getDefaultWallets({
+    appName: 'Pain',
+    chains
+})
+
+// const connectors = connectorsForWallets([
+//     {
+//         groupName: 'All',
+//         chains
+//         // wallets: [
+//         //     metaMaskWallet({chains}),
+//         //     walletConnectWallet({chains})
+//         // ]
+//     }
+// ]);
 
 const wagmiClient = createClient({
     autoConnect: true,
@@ -64,7 +68,7 @@ function App({Component, pageProps}: AppProps) {
         </Head>
         <Provider store={store}>
             <WagmiConfig client={wagmiClient}>
-                <RainbowKitProvider chains={chains} initialChain={chain.mainnet}>
+                <RainbowKitProvider chains={chains} initialChain={chain.goerli}>
                     <Component {...pageProps} />
                 </RainbowKitProvider>
             </WagmiConfig>

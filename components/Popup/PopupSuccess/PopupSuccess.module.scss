@@ -28,6 +28,7 @@
 .description {
     margin-top: 30px;
     font-size: 18px;
+    text-align: center;
 
     .mark {
         color: #FF4141;
@@ -48,6 +49,7 @@
     width: 100%;
     background: none;
     font-size: 22px;
+    cursor: pointer;
 
     &:hover {
         background: #1CB703;
@@ -63,6 +65,14 @@
     top: 43px;
     right: 43px;
     cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+        &:after,
+        &:before {
+            background-color: #e33459;
+        }
+    }
 
     &:after,
     &:before {
@@ -73,6 +83,8 @@
         width: 2px;
         height: 100%;
         background-color: #EF617F;
+
+
     }
 
     &:before {

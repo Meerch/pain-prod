@@ -42,6 +42,9 @@ export const useMintProcess = () => {
     const {config: configMint} = usePrepareContractWrite(generateContractPainSetting('getMyPain', {
         args: currentRoundId && [currentRoundId, amount],
         onError: error => {
+            console.log('price', mintPrice)
+            console.log('amount', amount)
+            console.log('sum', +mintPrice * amount)
             if (String(error).includes('INSUFFICIENT_FUNDS')) {
                 setError('Insufficient funds')
                 console.log('set error')
