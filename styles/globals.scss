@@ -15,12 +15,17 @@ body {
   color: #fff;
 }
 
+.background-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1000px;
+}
+
 .wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-
-
 }
 
 .loading {
@@ -79,7 +84,14 @@ body {
   overflow: hidden;
   z-index: 10;
 
+  canvas {
+    z-index: -1!important;
+    height: 2404px!important;
 
+    @media (min-width: $media-min-screen) {
+      height: 1054px!important;
+    }
+  }
 
   //& * {
   //  z-index: 100;

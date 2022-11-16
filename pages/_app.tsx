@@ -90,6 +90,10 @@ function App({Component, pageProps}: AppProps) {
             <meta name="msapplication-TileColor" content="#da532c"/>
             <meta name="theme-color" content="#ffffff"/>
             <title>Pain</title>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"/>
+            <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"/>
+
         </Head>
         <Provider store={store}>
             <WagmiConfig client={wagmiClient}>

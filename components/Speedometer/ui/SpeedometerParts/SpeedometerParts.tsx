@@ -58,14 +58,15 @@ const SpeedometerParts = memo((props: SpeedometerPartsProps) => {
                                 alt=""
                             />
 
-                            <img
-                                className={
-                                    classNames(
-                                        styles.imageBackgroundInactive,
-                                        {[styles.active]: !isActive(progress)}
-                                    )}
-                                src={backgroundInactive}
-                                alt=""/>
+                            {/*<img*/}
+                            {/*    className={*/}
+                            {/*        classNames(*/}
+                            {/*            styles.imageBackgroundInactive,*/}
+                            {/*            {[styles.active]: !isActive(progress)}*/}
+                            {/*        )}*/}
+                            {/*    src={backgroundInactive}*/}
+                            {/*    alt=""*/}
+                            {/*/>*/}
                         </div>
                     </div>
                 ))

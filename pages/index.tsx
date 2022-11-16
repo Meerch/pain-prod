@@ -9,17 +9,36 @@ import {MobilePopupMint, DesktopPopupMint} from "../components/Popup/PopupMint";
 import {useDetectDevice} from "../hooks/useDetectDevice";
 import PopupSuccess from "../components/Popup/PopupSuccess/PopupSuccess";
 import {popupActions} from "../store/Popup/popupSlice";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
+import FOG from 'vanta/dist/vanta.fog.min'
+import useSound from "use-sound";
+// @ts-ignore
+import soundClick from "../public/sounds/click.mp3";
 
 export default function Home() {
     const currentPopup = useTypedSelector(state => state.popup.currentPopup)
     const dispatch = useTypedDispatch()
     const {isMobile, isDesktop} = useDetectDevice()
     const [isReady, setIsReady] = useState(false)
+    const [play] = useSound(soundClick, {
+        volume: 0.3
+    })
 
     const closeModal = () => {
         dispatch(popupActions.changeCurrentPopup(null))
     }
+
+    const playSoundClick = useCallback(() => {
+        play()
+    }, [play])
+
+    useEffect(() => {
+        if (play) {
+            document.body.addEventListener('click', playSoundClick)
+        }
+
+        return () => document.body.removeEventListener('click', playSoundClick)
+    }, [play])
 
     useEffect(() => {
         if (isReady) {
@@ -38,6 +57,30 @@ export default function Home() {
         return () => clearTimeout(timer)
     }, [])
 
+    const [vantaEffect, setVantaEffect] = useState(null)
+    const myRef = useRef(null)
+    useEffect(() => {
+        if (!vantaEffect) {
+            setVantaEffect(FOG({
+                el: myRef.current,
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                highlightColor: 0x180101,
+                midtoneColor: 0x890404,
+                lowlightColor: 0xff0000,
+                baseColor: 0x0,
+                speed: 2.00,
+                zoom: 0.30
+            }))
+        }
+        return () => {
+            if (vantaEffect) vantaEffect.destroy()
+        }
+    }, [vantaEffect])
+
     return (
         <div className='wrapper'>
             {
@@ -50,7 +93,8 @@ export default function Home() {
                     </div>
                 </div>
             }
-            <div className='content-app'>
+            <div ref={myRef} className='content-app'>
+                {/*<div ref={myRef} className="background-animation"/>*/}
                 {isDesktop && <DesktopWrapper/>}
                 {isMobile && <MobileWrapper/>}
                 <Gallery/>

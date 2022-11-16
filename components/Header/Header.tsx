@@ -5,18 +5,20 @@ import {ConnectButton, useAccountModal, useChainModal, useConnectModal} from '@r
 import {useAccount, useConnect, useDisconnect} from "wagmi";
 import {useHover} from "../../hooks/useHover";
 import {svgButton, svgButtonWithoutShadow } from './svgButton';
+import useSound from 'use-sound';
+// @ts-ignore
+import soundConnect from '../../public/sounds/connect-wallet.mp3'
 
 export const Header = () => {
     const { openConnectModal } = useConnectModal();
-    const { openAccountModal } = useAccountModal();
-    const { openChainModal } = useChainModal();
     const {disconnect} = useDisconnect()
     const {address} = useAccount()
-    const {connect, connectors} = useConnect()
     const [isHover, bindHover] = useHover()
+    const [play] = useSound(soundConnect)
 
-    const onConnectWallet = (connector) => {
+    const onConnectWallet = () => {
         if (!address) {
+            play()
             // connect?.({connector, chainId: 5})
             openConnectModal()
         } else {
