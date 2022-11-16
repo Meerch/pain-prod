@@ -64,7 +64,7 @@ export const useMintProcess = () => {
         hash: dataMint?.hash
     })
     const {config: configFreeMint} = usePrepareContractWrite(generateContractPainSetting('feelSomePain', {
-        args: currentRoundId && [0.2, currentRoundId, signature],
+        args: currentRoundId && [currentRoundId, signature],
         onSuccess: data => console.log('mint ready', data)
     }))
 
