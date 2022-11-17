@@ -26,6 +26,17 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+
+  &.prod {
+    canvas {
+      width: 100vw!important;
+      height: 100vh!important;
+    }
+
+    .loading {
+      background: none;
+    }
+  }
 }
 
 .loading {
@@ -40,6 +51,11 @@ body {
   color: white;
   flex-flow: column nowrap;
 
+  .socialLinks {
+    margin-top: auto;
+    margin-bottom: 65px;
+  }
+
   @media (min-width: $media-min-screen) {
     justify-content: center;
   }
@@ -48,7 +64,8 @@ body {
     margin-top: 150px;
 
     @media (min-width: $media-min-screen) {
-      margin-top: 0;
+      //margin-top: 0;
+      margin-top: 15%;
     }
   }
 
