@@ -1,5 +1,4 @@
 import { BigNumberish, ethers } from "ethers";
-import web3 from "web3";
 
 export const getRandomInt = (min: number, max: number) => {
     min = Math.ceil(min);
@@ -9,9 +8,4 @@ export const getRandomInt = (min: number, max: number) => {
 
 export const formatEther = (value1: BigNumberish): string => {
     return ethers.utils.formatEther(value1)
-}
-
-
-export const toWei = (value2: string): number => {
-    return +web3.utils.toWei(value2, "ether")
 }
