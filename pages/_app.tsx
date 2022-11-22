@@ -1,17 +1,13 @@
 import '../styles/globals.scss'
-import 'swiper/css';
 import {AppProps} from 'next/app';
 import Head from "next/head";
 import {Provider} from 'react-redux';
 import {createWrapper} from 'next-redux-wrapper';
 import {store} from '../store/store';
 import '@rainbow-me/rainbowkit/styles.css';
-import {connectorsForWallets, getDefaultWallets, RainbowKitProvider,} from '@rainbow-me/rainbowkit';
+import {getDefaultWallets, RainbowKitProvider,} from '@rainbow-me/rainbowkit';
 import {Chain, chain, configureChains, createClient, WagmiConfig,} from 'wagmi';
-import {publicProvider} from 'wagmi/providers/public';
 import {jsonRpcProvider} from 'wagmi/providers/jsonRpc';
-import {metaMaskWallet, walletConnectWallet} from '@rainbow-me/rainbowkit/wallets';
-import Script from 'next/script'
 
 
 const avalancheChain: Chain = {

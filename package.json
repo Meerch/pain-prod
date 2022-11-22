@@ -25,12 +25,10 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "sass": "^1.55.0",
-    "swiper": "^8.4.2",
     "url-loader": "^4.1.1",
     "use-sound": "^4.0.1",
     "vanta": "^0.5.24",
-    "wagmi": "^0.6.8",
-    "web3": "^1.8.1"
+    "wagmi": "^0.6.8"
   },
   "devDependencies": {
     "@types/node": "^18.7.21",
