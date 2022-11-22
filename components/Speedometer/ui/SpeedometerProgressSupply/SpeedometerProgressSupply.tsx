@@ -2,7 +2,7 @@ import React, {memo, useEffect, useState} from 'react';
 import styles from "./SpeedometerProgressSupply.module.scss";
 import {useContractRead} from "wagmi";
 import {generateContractPainSetting} from "../../../../blockchain/utils";
-import {formatEther, toWei} from "../../../../helpers/utils";
+import {formatEther} from "../../../../helpers/utils";
 
 
 const SpeedometerProgressSupply = memo(() => {
@@ -18,22 +18,22 @@ const SpeedometerProgressSupply = memo(() => {
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [0],
         onSuccess: (data) => changeSupplies(0, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [1],
         onSuccess: (data) => changeSupplies(1, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [2],
         onSuccess: (data) => changeSupplies(2, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [3],
         onSuccess: (data) => changeSupplies(3, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
 
     useEffect(() => {

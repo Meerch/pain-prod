@@ -13,7 +13,7 @@ import {RootState} from "../../../../store/store";
 import {useContractRead} from "wagmi";
 import {generateContractPainSetting} from "../../../../blockchain/utils";
 import {fetchCurrentRound} from "../../model/services/fetchCurrentRound";
-import {formatEther, toWei} from '../../../../helpers/utils';
+import {formatEther} from '../../../../helpers/utils';
 
 // const mainProgress = 0.74
 
@@ -26,7 +26,7 @@ export const Speedometer = () => {
     const {data: changePrice}: Pick<{ data: number }, any> = useContractRead(generateContractPainSetting('getDiff', {
         args: currentRound && currentRound,
         enabled: currentRound,
-        select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
+        // select: (data) => +(data.map(data => formatEther(data)))[0] / 100 * -1).toFixed(2
     }))
 
     useEffect(() => {

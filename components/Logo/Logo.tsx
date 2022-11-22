@@ -2,7 +2,7 @@ import styles from './Logo.module.scss'
 import {useState} from "react";
 import {useContractRead} from "wagmi";
 import {generateContractPainSetting} from "../../blockchain/utils";
-import {formatEther, toWei} from "../../helpers/utils";
+import {formatEther} from "../../helpers/utils";
 
 export const Logo = () => {
     const [supplies, setSupplies] = useState([])
@@ -17,22 +17,22 @@ export const Logo = () => {
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [0],
         onSuccess: (data) => changeSupplies(0, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [1],
         onSuccess: (data) => changeSupplies(1, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [2],
         onSuccess: (data) => changeSupplies(2, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [3],
         onSuccess: (data) => changeSupplies(3, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
 
     return (

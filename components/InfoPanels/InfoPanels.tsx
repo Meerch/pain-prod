@@ -2,7 +2,7 @@ import styles from './InfoPanels.module.scss'
 import classNames from "classnames";
 import {useContractRead} from "wagmi";
 import {generateContractPainSetting} from "../../blockchain/utils";
-import {formatEther, toWei} from "../../helpers/utils";
+import {formatEther} from "../../helpers/utils";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store/store";
@@ -36,7 +36,7 @@ export const InfoPanels = () => {
     const {data: changePrice}: Pick<{ data: number }, any> = useContractRead(generateContractPainSetting('getDiff', {
         args: currentRound && currentRound,
         enabled: currentRound,
-        select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
+        // select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
     }))
     const [activePanel, setActivePanel] = useState(null)
 
@@ -51,22 +51,22 @@ export const InfoPanels = () => {
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [0],
         onSuccess: (data) => changeSupplies(0, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [1],
         onSuccess: (data) => changeSupplies(1, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [2],
         onSuccess: (data) => changeSupplies(2, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
     useContractRead(generateContractPainSetting('availableSupply', {
         args: [3],
         onSuccess: (data) => changeSupplies(3, data),
-        select: (data) => toWei(formatEther(data))
+        // select: (data) => toWei(formatEther(data))
     }))
 
     const calcProgress = (currentSupply: number, maxSupply: number) => {

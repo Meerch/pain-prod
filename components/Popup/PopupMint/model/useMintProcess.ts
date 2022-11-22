@@ -4,7 +4,7 @@ import {useAccount, useContractRead, useContractWrite, usePrepareContractWrite, 
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../store/store";
 import {generateContractPainSetting} from "../../../../blockchain/utils";
-import {formatEther, toWei} from "../../../../helpers/utils";
+import {formatEther} from "../../../../helpers/utils";
 import {ethers} from "ethers";
 import {popupActions} from "../../../../store/Popup/popupSlice";
 
@@ -19,7 +19,7 @@ export const useMintProcess = () => {
     const {data: changePrice} = useContractRead(generateContractPainSetting('getDiff', {
         args: currentRoundId && currentRoundId,
         enabled: currentRoundId,
-        select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
+        // select: (data) => +(data.map(data => toWei(formatEther(data)))[0] / 100 * -1).toFixed(2)
     }))
     const [error, setError] = useState<string | null>(null)
 
